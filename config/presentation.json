@@ -28,5 +28,10 @@
         "thank_you_segue_image": null,
         "default_segue_image": null,
         "thank_you_title": null
+    },
+    "styling": {
+        "social-tags": "''",
+        "brand-small-icon-size": "''",
+        "brand-small-icon-file": "''"
     }
 }
