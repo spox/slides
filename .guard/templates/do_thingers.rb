@@ -162,11 +162,7 @@ module Guard
     def do_variable_updates(*args)
       paths = Array(args.first).flatten.compact
       if(paths.detect{|path| path.end_with?('config/presentation.json')})
-        puts 'FOUND'
         write_variables
-      else
-        puts 'not found'
-        p paths
       end
     end
 
