@@ -2,6 +2,7 @@
     "social-tags": "''",
     "brand-small-icon-size": "30px",
     "brand-small-icon-file": "''",
+    "title-page-image-bottom": "''",
 
     "gray-1": "#e6e6e6",
     "gray-2": "#a9a9a9",
@@ -32,6 +33,6 @@
     "slide-border-radius": "5px",
 
     "slide-tap-area-width": "100px",
-
-    "article-content-top-padding": "45px"
+    "article-content-top-padding": "45px",
+    "thank-you-background-color": "rgb(13, 168, 97)"
 }
