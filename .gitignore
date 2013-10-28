@@ -1,4 +1,6 @@
 output/*
+theme/scss/_variables.scss
+!.guard*
 
 # Compiled source #
 ###################
