@@ -23,7 +23,7 @@
     "layouts": {
         "template": "base",
         "theme": "default",
-        "bookend_slide_image": null,
+        "bookend_slide_image": "devopsdays-logo.png",
         "title_segue_image": null,
         "thank_you_segue_image": null,
         "default_segue_image": null,
@@ -31,7 +31,7 @@
     },
     "styling": {
         "social-tags": "''",
-        "brand-small-icon-size": "''",
+        "brand-small-icon-size": "30px",
         "brand-small-icon-file": "''"
     }
 }
