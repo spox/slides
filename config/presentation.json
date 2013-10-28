@@ -1,0 +1,32 @@
+{
+    "settings": {
+        "title": "TITLE",
+        "subtitle": "SUBTITLE",
+        "useBuilds": true,
+        "usePrettify": true,
+        "enableSlideAreas": true,
+        "enableTouch": true,
+        "favIcon": "images/favicon.jpg",
+        "fonts": [
+            "Open Sans:regular,semibold,italic,italicsemibold",
+            "Inconsolata"
+        ]
+    },
+    "presenters": [{
+        "name": "Firstname Lastname",
+        "company": "Job Title<br>Google",
+        "gplus": "http://plus.google.com/1234567890",
+        "twitter": "@yourhandle",
+        "www": "http://www.you.com",
+        "github": "http://github.com/you"
+    }],
+    "layouts": {
+        "template": "base",
+        "theme": "default",
+        "bookend_slide_image": null,
+        "title_segue_image": null,
+        "thank_you_segue_image": null,
+        "default_segue_image": null,
+        "thank_you_title": null
+    }
+}

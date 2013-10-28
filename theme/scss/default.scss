@@ -64,7 +64,7 @@ slides > slide {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 26px;
   color: $gray-3;
-  //@include background(linear-gradient(white, white 85%, $gray-1));
+  @include background(linear-gradient(white, white 85%, $gray-1));
   //background-color: white;
   width: $slide-width;
   height: $slide-height;
@@ -939,7 +939,7 @@ aside.gdbar {
       display: none !important;
     }
   }
-  
+
   slides {
     slide {
       &.backdrop {

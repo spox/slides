@@ -1,0 +1,54 @@
+%html
+  %head
+    %title= title || 'Presentation'
+    %meta{:charset => 'utf-8'}
+    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'chrome=1'}
+    %meta{:name => 'apple-mobile-web-app-capable', :content => 'yes'}
+    %link{:rel => 'stylesheet', :media => 'all', :href => "theme/css/#{theme || 'default'}.css"}
+    %link{:rel => 'stylesheet', :media => 'only screen and (max-device-width: 480px)', :href => 'theme/css/phone.css'}
+    %base{:target => '_blank'}
+    %script{'data-main' => 'js/slides', :src => 'js/require-1.0.8.min.js'}
+  %body{:style => 'opacity: 0'}
+    %slides{:class => 'layout-widescreen'}
+      - if bookend_slide_image
+        %slide{:class => 'logoslide nobackground'}
+          %article{:class => 'flexbox vcenter'}
+            %span
+              %img{:src => bookend_slide_image}
+      %slide{:class => 'title-slide segue nobackground'}
+        %aside.gdbar
+          %img{:src => "images/#{title_segue_image || default_segue_image}"}
+        %hgroup{:class => 'auto-fadin'}
+          %h1{:data => {:config_title => true}}
+          %h2{:data => {:config_subtitle => true}}
+          %p{:data => {:config_presenter => true}}
+      = slides.join("\n")
+      %slide{:class => 'thank-you-slide segue nobackground'}
+        %aside{:class => 'gdbar right'}
+          %img{:src => "images/#{thank_you_segue_image || default_segue_image}"}
+        %article{:class => 'flexbox vleft auto-fadein'}
+          %h2= thank_you_title || 'Thank you!'
+        %p{:class => 'auto-fadein', :data => {:config_contact => true}}
+      - if bookend_slide_image
+        %slide{:class => 'logoslide nobackground'}
+          %article{:class => 'flexbox vcenter'}
+            %span
+              %img{:src => bookend_slide_image}
+        %slide.backdrop
+
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  :plain
+    <!--[if IE]>
+      <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+      <script>CFInstall.check({mode: 'overlay'});</script>
+    <![endif]-->
