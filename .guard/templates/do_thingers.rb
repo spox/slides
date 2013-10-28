@@ -157,11 +157,63 @@ module Guard
     end
 
     def compile(*args)
+      do_variable_updates(*args)
       compass.run
+    end
+
+    def do_variable_updates(*args)
+      paths = Array(args.first).compact.flatten
+      if(paths.detect{|path| path.end_with?('config/presentation.json')})
+        write_variables
+      end
+    end
+
+    def base
+      Dir.pwd
+    end
+
+    def write_path
+      path = File.join(base, 'theme/scss/_variables.scss')
+      unless(File.directory?(File.dirname(path)))
+        FileUtils.mkdir_p(File.dirname(path))
+      end
+      path
+    end
+
+    def write
+      val = config.dup
+      val.delete_if{|k,v| !%w(settings presenters).include?(k)}
+      File.open(write_path, 'w') do |f|
+        f.write "var SLIDE_CONFIG = #{JSON.dump(val)};"
+      end
+    end
+
+    def config
+      require 'json'
+      _config = JSON.load(
+        File.read(
+          File.join(base, 'config/presentation.json')
+        )
+      )
+      _config['styling'].dup
+    end
+
+    def default_config
+      require 'json'
+      JSON.load(File.read(File.join(base, 'theme/scss/variable_defaults.json')))
+    end
+
+    def write_variables
+      File.open(File.join(base, 'theme/scss/_variables.scss'), 'w') do |f|
+        default_config.merge(config).each do |k,v|
+          f.puts "$#{k}: #{v};"
+        end
+      end
     end
 
     def start(*args)
       compile
+      write_variables
     end
 
     def run_on_modification(paths)
