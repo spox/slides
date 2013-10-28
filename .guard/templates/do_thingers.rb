@@ -263,7 +263,7 @@ module Guard
     def load_content
       @slides = Dir.glob(
         File.join(base, 'content', '**', '*.haml')
-      ).map do |path|
+      ).sort.map do |path|
         Haml::Engine.new(
           File.read(path)
         ).render(binding)
