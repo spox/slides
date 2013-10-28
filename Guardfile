@@ -17,9 +17,5 @@ guard :sass_compiler do
 end
 
 guard :haml_compiler do
-  watch(%r{(templates/.*|config/presentation\.json)})
-end
-
-guard :haml_compiler do
-  watch(%r{(content/.*|config/presentation\.json)})
+  watch(%r{(templates/.*|content/.*|config/presentation\.json)})
 end
