@@ -1,4 +1,4 @@
-require './.guard/templates/copier.rb'
+require './.guard/templates/do_thingers.rb'
 
 guard :image_copier do
   watch(%r{images/.*})
@@ -13,19 +13,13 @@ guard :js_config do
 end
 
 guard :sass_compiler do
-  watch(%r{theme/scss/.*})
-end
-
-guard :css_copier do
-  watch(%r{theme/css/.*})
+  watch(%r{(theme/scss/.*|config/presentation\.json)})
 end
 
 guard :haml_compiler do
-  watch('config/presentation.json')
-  watch(%r{templates/.*})
+  watch(%r{(templates/.*|config/presentation\.json)})
 end
 
 guard :haml_compiler do
-  watch('config/presentation.json')
-  watch(%r{content/.*})
+  watch(%r{(content/.*|config/presentation\.json)})
 end
