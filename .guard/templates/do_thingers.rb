@@ -32,16 +32,14 @@ module Guard
 
     def config
       require 'json'
-      unless(@_config)
-        @_config = JSON.load(
-          File.read(
-            File.join(base, 'config/presentation.json')
-          )
+      JSON.load(
+        File.read(
+          File.join(base, 'config/presentation.json')
         )
-      end
+      )
     end
 
-    def run_on_modification(*args)
+    def run_on_modifications(*args)
       write
     end
 
@@ -96,7 +94,7 @@ module Guard
       paths
     end
 
-    def run_on_modification(paths)
+    def run_on_modifications(paths)
       update_paths(paths)
       paths
     end
@@ -162,9 +160,13 @@ module Guard
     end
 
     def do_variable_updates(*args)
-      paths = Array(args.first).compact.flatten
+      paths = Array(args.first).flatten.compact
       if(paths.detect{|path| path.end_with?('config/presentation.json')})
+        puts 'FOUND'
         write_variables
+      else
+        puts 'not found'
+        p paths
       end
     end
 
@@ -216,8 +218,8 @@ module Guard
       write_variables
     end
 
-    def run_on_modification(paths)
-      compile
+    def run_on_modifications(paths)
+      compile(paths)
     end
 
     def run_on_additions(paths)
@@ -282,7 +284,7 @@ module Guard
       compile
     end
 
-    def run_on_modification(paths)
+    def run_on_modifications(paths)
       compile
     end
 
