@@ -1,6 +1,7 @@
 output/*
 theme/scss/_variables.scss
 !.guard*
+scratch*
 
 # Compiled source #
 ###################
