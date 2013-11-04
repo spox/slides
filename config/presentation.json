@@ -27,7 +27,7 @@
         "thank_you_segue_image": "fry.jpg",
         "default_segue_image": null,
         "thank_you_title": null,
-        "increment_every": 5
+        "increment_every": 15
     },
     "styling": {
         "social-tags": "'<https://github.com/chrisroberts>'",
