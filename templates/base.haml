@@ -38,17 +38,37 @@
         %slide.backdrop
   - if increment_every
     :javascript
+      var inc_started = false
+      function toggle_auto_advance(){
+        if(!inc_started){
+          inc_started = true;
+          inc_slide();
+          inc();
+        } else {
+          inc_started = false;
+        }
+      }
+
+      function inc_slide(){
+        var evt = document.createEvent('Event');
+        evt.initEvent('keydown', true, true);
+        evt.keyCode = 32;
+        document.dispatchEvent(evt);
+      }
 
       function inc(){
         setTimeout(function(){
-          var evt = document.createEvent('Event');
-          evt.initEvent('keydown', true, true);
-          evt.keyCode = 32;
-          document.dispatchEvent(evt);
-          inc();
+          if(inc_started){
+            inc_slide();
+            inc();
+          }
         }, #{increment_every} * 1000);
       }
-      window.onload = inc;
+      jQuery('body').keypress(function(event){
+        if(event.which == 115){
+          toggle_auto_advance();
+        }
+      });
 
   :plain
     <!--[if IE]>
