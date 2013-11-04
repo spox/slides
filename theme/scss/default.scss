@@ -365,6 +365,12 @@ pre[data-lang="go"] {
   color: #333;
 }
 
+pre.auto-scroll {
+  overflow: auto;
+  overflow-x: hidden;
+  height: 80%;
+}
+
 code {
   font-size: 95%;
   font-family: 'Source Code Pro', 'Courier New', monospace;
