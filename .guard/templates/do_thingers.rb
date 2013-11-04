@@ -261,7 +261,7 @@ module Guard
         ).render(CompileIn.new, config.merge(:slides => @slides))
       rescue => e
         puts 'ACK! Failed to render the haml!'
-        puts "#{e.class}: #{e}\n#{e.backtrace.join("\n")}"
+        puts "Reason: #{e.class} - #{e}"
       end
     end
 
