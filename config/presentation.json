@@ -1,7 +1,7 @@
 {
     "settings": {
-        "title": "TITLE",
-        "subtitle": "SUBTITLE",
+        "title": "AWS CloudFormation",
+        "subtitle": "Adding sanity with simple tools",
         "useBuilds": true,
         "usePrettify": true,
         "enableSlideAreas": true,
@@ -13,25 +13,26 @@
         ]
     },
     "presenters": [{
-        "name": "Firstname Lastname",
-        "company": "Job Title<br>Google",
-        "gplus": "http://plus.google.com/1234567890",
-        "twitter": "@yourhandle",
-        "www": "http://www.you.com",
-        "github": "http://github.com/you"
+        "name": "Chris Roberts",
+        "company": "Straight jacket programmer<br>HeavyWater Operations",
+        "twitter": "@_spox",
+        "www": "http://code.chrisroberts.org",
+        "github": "http://github.com/chrisroberts"
     }],
     "layouts": {
         "template": "base",
         "theme": "default",
         "bookend_slide_image": "devopsdays-logo.png",
-        "title_segue_image": null,
-        "thank_you_segue_image": null,
+        "title_segue_image": "fry.jpg",
+        "thank_you_segue_image": "fry.jpg",
         "default_segue_image": null,
-        "thank_you_title": null
+        "thank_you_title": null,
+        "increment_every": 5
     },
     "styling": {
-        "social-tags": "''",
+        "social-tags": "'<https://github.com/chrisroberts>'",
         "brand-small-icon-size": "30px",
-        "brand-small-icon-file": "''"
+        "brand-small-icon-file": "'fry.jpg'",
+        "title-page-image-bottom": "'hw-logo.png'"
     }
 }
