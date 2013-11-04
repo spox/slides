@@ -1,0 +1,127 @@
+%slide
+  %hgroup
+    %h2= '`whoami`'
+  %article
+    %ul
+      %li= 'Chris Roberts'
+      %li= 'HeavyWater Operations'
+      %li= 'Mashes keyboards'
+      %li= 'Enjoys being lazy'
+
+%slide{:class => 'segue dark quote nobackground'}
+  %aside{:class => 'gdbar bottom right'}
+    %img{:src => 'images/hourglass.png'}
+  %article{:class => 'flexbox vleft auto-fadein'}
+    %q= "You will never 'find' time for anything. If you want time, you must make it."
+    %div.author= 'Charles Buxton'
+
+%slide
+  %hgroup
+    %h2= 'The Problem'
+  %article
+    %p= "What's wasting my time?"
+    %ul.build
+      %li
+        VMs and tooling
+        %ul
+          %li= 'Strict resource requirements'
+          %li= 'Time consuming startups and teardowns'
+          %li= 'Lack of cluster style building'
+      %li
+        Testing
+        %ul
+          %li= 'Have isolated testing'
+          %li= 'Missing integration testing'
+
+%slide
+  %hgroup
+    %h2= 'The Kludges'
+  %article
+    %p= 'Cloud based'
+    %ul.build
+      %li= 'Knife plugins (ec2, rackspace)'
+      %li= 'Spiceweasel - clusters'
+    %p.build= 'Host based'
+    %ul.build
+      %li= 'Virtualbox GUI/CLI'
+      %li= 'Vagrant'
+      %li= 'Hand tuning LXC'
+
+%slide
+  %aside{:class => 'gdbar bottom right'}
+    %img{:src => 'images/lightbulb.png'}
+  %hgroup
+    %h2= 'A Solution Takes Form'
+  %article
+    %p= 'LXC based development'
+    %ul.build
+      %li= 'Comparitively fast creations (clones)'
+      %li= 'No hard resource requirements (sharing)'
+      %li= 'Quick node refreshes'
+      %li= 'Some what easy cluster building'
+      %li= 'Increased cycles with less foot tapping'
+    %p= 'At this point, it was all hand spun'
+
+%slide
+  %aside{:class => 'gdbar bottom right'}
+    %img{:src => 'images/tools.png'}
+  %hgroup
+    %h2= 'Vagabond - Wrapping up the tools'
+  %article
+    %p= 'Components'
+    %ul.build
+      %li= 'LXC (Linux Containers)'
+      %li
+        Chef
+        %ul
+          %li= 'chef-solo (host provision)'
+          %li= 'erchef'
+          %li= 'chef-zero'
+      %li
+        Testing integration
+        %ul
+          %li= 'test-kitchen'
+          %li= 'ServerSpec'
+      %li= 'Ruby'
+
+%slide{:class => 'segue dark quote nobackground'}
+  %aside{:class => 'gdbar bottom right'}
+    %img{:src => 'images/hazard.png'}
+  %article{:class => 'flexbox vleft auto-fadein'}
+    %q= "Everything stinks till it's finished."
+    %div.author= 'Dr. Seuss'
+
+%slide
+  %hgroup
+    %h2= 'Building something useful'
+  %article
+    %p= 'Works on my machine!'
+    %ul.build
+      %li= 'Snowflake setup'
+      %li= 'Testing on fresh installs'
+      %li= 'Upgrades'
+      %li= 'Useful for me'
+
+%slide{:class => 'segue dark nobackground'}
+  %hgroup{:class => 'auto-fadein'}
+    %h2= 'Vagabond'
+    %h3= 'How it works'
+
+%slide
+  %hgroup
+    %h2= 'Installation and configuration'
+  %article
+
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        class Fubar
+          def bang!
+            puts 'Bang!'
+          end
+        end
+
+%slide
+  %hgroup
+    %h2= 'Run vagabond run!'
+  %article
+    %iframe{:scrolling => 'no', :width => '535', :border => '0', :height => '516', :id => 'shelr_frame', :src => 'http://shelr.tv/records/520d22b296608048d2000071/embed'}
