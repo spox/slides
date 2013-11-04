@@ -254,10 +254,15 @@ module Guard
 
     def haml
       require 'haml'
-      load_content
-      Haml::Engine.new(
-        File.read(File.join(base, 'templates', "#{@template || 'base'}.haml"))
-      ).render(CompileIn.new, config.merge(:slides => @slides))
+      begin
+        load_content
+        Haml::Engine.new(
+          File.read(File.join(base, 'templates', "#{@template || 'base'}.haml"))
+        ).render(CompileIn.new, config.merge(:slides => @slides))
+      rescue => e
+        puts 'ACK! Failed to render the haml!'
+        puts "#{e.class}: #{e}\n#{e.backtrace.join("\n")}"
+      end
     end
 
     def load_content
