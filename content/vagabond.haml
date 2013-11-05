@@ -60,29 +60,37 @@
       %li= 'Quick node refreshes'
       %li= 'Some what easy cluster building'
       %li= 'Increased cycles with less foot tapping'
-    %p= 'At this point, it was all hand spun'
+    %p.build= 'At this point, it was all hand spun'
 
 %slide
   %aside{:class => 'gdbar bottom right'}
     %img{:src => 'images/tools.png'}
   %hgroup
-    %h2= 'Vagabond - Wrapping up the tools'
+    %h2= 'Vagabond - Combining the old to create new'
   %article
-    %p= 'Components'
+    %p= 'Existing Component integration'
     %ul.build
       %li= 'LXC (Linux Containers)'
       %li
         Chef
         %ul
-          %li= 'chef-solo (host provision)'
-          %li= 'erchef'
-          %li= 'chef-zero'
+          %li chef-solo (host provision)
+          %li knife core (ui tools)
+          %li erchef / chef-zero
       %li
         Testing integration
         %ul
-          %li= 'test-kitchen'
-          %li= 'ServerSpec'
-      %li= 'Ruby'
+          %li test-kitchen
+          %li ServerSpec
+      %li
+        Cookbooks
+        %ul
+          %li lxc
+          %li chef-server-populator
+      %li
+        Ruby / Gems
+        %ul
+          %li elecksee
 
 %slide{:class => 'segue dark quote nobackground'}
   %aside{:class => 'gdbar bottom right'}
@@ -93,7 +101,8 @@
 
 %slide
   %hgroup
-    %h2= 'Building something useful'
+    %h2 Building something useful
+    %h3 Pulling together desparate tools
   %article
     %p= 'Works on my machine!'
     %ul.build
