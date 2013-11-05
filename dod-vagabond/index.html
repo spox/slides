@@ -226,7 +226,7 @@
           <h2>Vagabondfile (DSL)</h2>
         </hgroup>
         <article class='smaller'>
-          <pre class='prettyprint' data-lang='ruby'>Vagabondfile.describe do&#x000A;  defaults do&#x000A;    template 'ubuntu_1204'&#x000A;  end&#x000A;  nodes do&#x000A;    aptcacher.run_list ['recipe[apt::cacher-ng]']&#x000A;    aptclient.run_list ['recipe[apt::cacher-client]']&#x000A;  end&#x000A;  clusters do&#x000A;    cacher ['aptcacher', 'aptclient']&#x000A;  end&#x000A;  templates do&#x000A;    ubuntu_1204_2G do&#x000A;      base 'ubuntu_1204'&#x000A;      memory.ram '2G'&#x000A;      memory.swap '512M'&#x000A;    end&#x000A;  end&#x000A;  server.enabled true&#x000A;  callbacks do&#x000A;    destroy [&#x000A;      "vagabond knife node delete -y ${NAME}",&#x000A;      "vagabond knife client delete -y ${NAME}"&#x000A;    ]&#x000A;  end&#x000A;end&#x000A;</pre>
+          <pre class='auto-scroll prettyprint' data-lang='ruby'>Vagabondfile.describe do&#x000A;  defaults do&#x000A;    template 'ubuntu_1204'&#x000A;  end&#x000A;  nodes do&#x000A;    aptcacher.run_list ['recipe[apt::cacher-ng]']&#x000A;    aptclient.run_list ['recipe[apt::cacher-client]']&#x000A;  end&#x000A;  clusters do&#x000A;    cacher ['aptcacher', 'aptclient']&#x000A;  end&#x000A;  templates do&#x000A;    ubuntu_1204_2G do&#x000A;      base 'ubuntu_1204'&#x000A;      memory.ram '2G'&#x000A;      memory.swap '512M'&#x000A;    end&#x000A;  end&#x000A;  server.enabled true&#x000A;  callbacks do&#x000A;    destroy [&#x000A;      "vagabond knife node delete -y ${NAME}",&#x000A;      "vagabond knife client delete -y ${NAME}"&#x000A;    ]&#x000A;  end&#x000A;end&#x000A;</pre>
         </article>
       </slide>
       <slide class='dark nobackground'>
@@ -261,6 +261,15 @@
             <li>Run list specific specs</li>
             <li>Tooling agnostic</li>
           </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>More in-depth tests</h2>
+        </hgroup>
+        <article>
+          <p>Do stuff and then test</p>
+          <pre class='prettyprint' data-lang='ruby'>spec do&#x000A;  clusters do&#x000A;    test do&#x000A;      provision do&#x000A;        times 2&#x000A;        spec :after_2&#x000A;        after.every.run 'ps -AH ux'&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end&#x000A;</pre>
         </article>
       </slide>
       <slide>
