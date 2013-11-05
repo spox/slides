@@ -475,6 +475,7 @@ button:not(:disabled):active {
 
 .columns-2 {
   @include column-count(2);
+  h3.after{ @include column-break-before(always); }
 }
 
 table {
