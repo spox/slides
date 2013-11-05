@@ -1,0 +1,323 @@
+<html>
+  <head>
+    <title>Presentation</title>
+    <meta charset='utf-8'>
+    <meta content='chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <link href='theme/css/default.css' media='all' rel='stylesheet'>
+    <link href='theme/css/phone.css' media='only screen and (max-device-width: 480px)' rel='stylesheet'>
+    <base target='_blank'>
+    <script src='js/jquery.min.js'></script>
+    <script data-main='js/slides' src='js/require-1.0.8.min.js'></script>
+  </head>
+  <body style='opacity: 0'>
+    <slides class='layout-widescreen'>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/devopsdays-logo.png'>
+          </span>
+        </article>
+      </slide>
+      <slide class='title-slide segue nobackground'>
+        <aside class='gdbar'>
+          <img src='images/fry.jpg'>
+        </aside>
+        <hgroup class='auto-fadin'>
+          <h1 data-config-title></h1>
+          <h2 data-config-subtitle></h2>
+          <p data-config-presenter></p>
+        </hgroup>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>AWS CloudFormation</h2>
+        </hgroup>
+        <article>
+          <p>What is CloudFormation?</p>
+          <ul>
+            <li>Amazon AWS service</li>
+            <li>Provides an easy way to create AWS resources</li>
+            <li>Provisions resources in an orderly and predictable fashion</li>
+            <li>JSON formatted templates to describe resources</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Simple example</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='auto-scroll prettyprint' data-lang='JSON'>{&#x000A;  "AWSTemplateFormatVersion" : "2010-09-09",&#x000A;  "Description" : "Sample EC2 template",&#x000A;  "Parameters" : {&#x000A;    "KeyName" : {&#x000A;      "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",&#x000A;      "Type" : "String"&#x000A;    }&#x000A;  },&#x000A;  "Mappings" : {&#x000A;    "RegionMap" : {&#x000A;      "us-east-1"      : { "AMI" : "ami-7f418316" },&#x000A;      "us-west-1"      : { "AMI" : "ami-951945d0" },&#x000A;      "us-west-2"      : { "AMI" : "ami-16fd7026" },&#x000A;      "eu-west-1"      : { "AMI" : "ami-24506250" },&#x000A;      "sa-east-1"      : { "AMI" : "ami-3e3be423" },&#x000A;      "ap-southeast-1" : { "AMI" : "ami-74dda626" },&#x000A;      "ap-northeast-1" : { "AMI" : "ami-dcfa4edd" }&#x000A;    }&#x000A;  },&#x000A;  "Resources" : {&#x000A;    "Ec2Instance" : {&#x000A;      "Type" : "AWS::EC2::Instance",&#x000A;      "Properties" : {&#x000A;        "KeyName" : { "Ref" : "KeyName" },&#x000A;        "ImageId" : { "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "AMI" ]},&#x000A;        "UserData" : { "Fn::Base64" : "80" }&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Kinda complex example</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='auto-scroll prettyprint' data-lang='JSON'>{&#x000A;  "AWSTemplateFormatVersion": "2010-09-09",&#x000A;  "Description": "AWS CloudFormation Sample Template Rails_Multi_AZ",&#x000A;  "Parameters": {&#x000A;    "KeyName": {&#x000A;      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instances",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "64",&#x000A;      "AllowedPattern": "[-_ a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "can contain only alphanumeric characters, spaces, dashes and underscores."&#x000A;    },&#x000A;    "DBName": {&#x000A;      "Default": "MyDatabase",&#x000A;      "Description": "MySQL database name",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "64",&#x000A;      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBUsername": {&#x000A;      "NoEcho": "true",&#x000A;      "Description": "Username for MySQL database access",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "16",&#x000A;      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBPassword": {&#x000A;      "NoEcho": "true",&#x000A;      "Description": "Password for MySQL database access",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "41",&#x000A;      "AllowedPattern": "[a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBAllocatedStorage": {&#x000A;      "Default": "5",&#x000A;      "Description": "The size of the database (Gb)",&#x000A;      "Type": "Number",&#x000A;      "MinValue": "5",&#x000A;      "MaxValue": "1024",&#x000A;      "ConstraintDescription": "must be between 5 and 1024Gb."&#x000A;    },&#x000A;    "DBInstanceClass": {&#x000A;      "Default": "db.m1.small",&#x000A;      "Description": "The database instance type",&#x000A;      "Type": "String",&#x000A;      "AllowedValues": [&#x000A;        "db.m1.small",&#x000A;        "db.m1.large",&#x000A;        "db.m1.xlarge",&#x000A;        "db.m2.xlarge",&#x000A;        "db.m2.2xlarge",&#x000A;        "db.m2.4xlarge"&#x000A;      ],&#x000A;      "ConstraintDescription": "must select a valid database instance type."&#x000A;    },&#x000A;    "MultiAZDatabase": {&#x000A;      "Default": "true",&#x000A;      "Description": "Create a multi-AZ MySQL Amazon RDS database instance",&#x000A;      "Type": "String",&#x000A;      "AllowedValues": [&#x000A;        "true",&#x000A;        "false"&#x000A;      ],&#x000A;      "ConstraintDescription": "must be either true or false."&#x000A;    },&#x000A;    "WebServerCapacity": {&#x000A;      "Default": "2",&#x000A;      "Description": "The initial number of WebServer instances",&#x000A;      "Type": "Number",&#x000A;      "MinValue": "1",&#x000A;      "MaxValue": "5",&#x000A;      "ConstraintDescription": "must be between 1 and 5 EC2 instances."&#x000A;    },&#x000A;    "InstanceType": {&#x000A;      "Description": "WebServer EC2 instance type",&#x000A;      "Type": "String",&#x000A;      "Default": "m1.small",&#x000A;      "AllowedValues": [&#x000A;        "t1.micro",&#x000A;        "m1.small",&#x000A;        "m1.medium",&#x000A;        "m1.large",&#x000A;        "m1.xlarge",&#x000A;        "m2.xlarge",&#x000A;        "m2.2xlarge",&#x000A;        "m2.4xlarge",&#x000A;        "m3.xlarge",&#x000A;        "m3.2xlarge",&#x000A;        "c1.medium",&#x000A;        "c1.xlarge",&#x000A;        "cc1.4xlarge",&#x000A;        "cc2.8xlarge",&#x000A;        "cg1.4xlarge"&#x000A;      ],&#x000A;      "ConstraintDescription": "must be a valid EC2 instance type."&#x000A;    },&#x000A;    "SSHLocation": {&#x000A;      "Description": " The IP address range that can be used to SSH to the EC2 instances",&#x000A;      "Type": "String",&#x000A;      "MinLength": "9",&#x000A;      "MaxLength": "18",&#x000A;      "Default": "0.0.0.0/0",&#x000A;      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",&#x000A;      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."&#x000A;    }&#x000A;  },&#x000A;  "Mappings": {&#x000A;    "AWSInstanceType2Arch": {&#x000A;      "t1.micro": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.small": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.medium": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.large": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.2xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.4xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m3.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m3.2xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "c1.medium": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "c1.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "cc1.4xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      },&#x000A;      "cc2.8xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      },&#x000A;      "cg1.4xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      }&#x000A;    },&#x000A;    "AWSRegionArch2AMI": {&#x000A;      "us-east-1": {&#x000A;        "32": "ami-31814f58",&#x000A;        "64": "ami-1b814f72",&#x000A;        "64HVM": "ami-0da96764"&#x000A;      },&#x000A;      "us-west-2": {&#x000A;        "32": "ami-38fe7308",&#x000A;        "64": "ami-30fe7300",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "us-west-1": {&#x000A;        "32": "ami-11d68a54",&#x000A;        "64": "ami-1bd68a5e",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "eu-west-1": {&#x000A;        "32": "ami-973b06e3",&#x000A;        "64": "ami-953b06e1",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-southeast-1": {&#x000A;        "32": "ami-b4b0cae6",&#x000A;        "64": "ami-beb0caec",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-southeast-2": {&#x000A;        "32": "ami-b3990e89",&#x000A;        "64": "ami-bd990e87",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-northeast-1": {&#x000A;        "32": "ami-0644f007",&#x000A;        "64": "ami-0a44f00b",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "sa-east-1": {&#x000A;        "32": "ami-3e3be423",&#x000A;        "64": "ami-3c3be421",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Resources": {&#x000A;    "ElasticLoadBalancer": {&#x000A;      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",&#x000A;      "Metadata": {&#x000A;        "Comment": "Configure the Load Balancer with a simple health check and cookie-based stickiness"&#x000A;      },&#x000A;      "Properties": {&#x000A;        "AvailabilityZones": {&#x000A;          "Fn::GetAZs": ""&#x000A;        },&#x000A;        "LBCookieStickinessPolicy": [&#x000A;          {&#x000A;            "PolicyName": "CookieBasedPolicy",&#x000A;            "CookieExpirationPeriod": "30"&#x000A;          }&#x000A;        ],&#x000A;        "Listeners": [&#x000A;          {&#x000A;            "LoadBalancerPort": "80",&#x000A;            "InstancePort": "3000",&#x000A;            "Protocol": "HTTP",&#x000A;            "PolicyNames": [&#x000A;              "CookieBasedPolicy"&#x000A;            ]&#x000A;          }&#x000A;        ],&#x000A;        "HealthCheck": {&#x000A;          "Target": "HTTP:3000/",&#x000A;          "HealthyThreshold": "2",&#x000A;          "UnhealthyThreshold": "5",&#x000A;          "Interval": "10",&#x000A;          "Timeout": "5"&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WebServerGroup": {&#x000A;      "Type": "AWS::AutoScaling::AutoScalingGroup",&#x000A;      "Properties": {&#x000A;        "AvailabilityZones": {&#x000A;          "Fn::GetAZs": ""&#x000A;        },&#x000A;        "LaunchConfigurationName": {&#x000A;          "Ref": "LaunchConfig"&#x000A;        },&#x000A;        "MinSize": "1",&#x000A;        "MaxSize": "5",&#x000A;        "DesiredCapacity": {&#x000A;          "Ref": "WebServerCapacity"&#x000A;        },&#x000A;        "LoadBalancerNames": [&#x000A;          {&#x000A;            "Ref": "ElasticLoadBalancer"&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    "LaunchConfig": {&#x000A;      "Type": "AWS::AutoScaling::LaunchConfiguration",&#x000A;      "Metadata": {&#x000A;        "Comment1": "Configure the bootstrap helpers to install the Rails",&#x000A;        "Comment2": "The application is downloaded from the CloudFormationRailsSample.zip file",&#x000A;        "AWS::CloudFormation::Init": {&#x000A;          "config": {&#x000A;            "packages": {&#x000A;              "yum": {&#x000A;                "gcc-c++": [ ],&#x000A;                "make": [ ],&#x000A;                "ruby-devel": [ ],&#x000A;                "rubygems": [ ],&#x000A;                "mysql": [ ],&#x000A;                "mysql-devel": [ ],&#x000A;                "mysql-libs": [ ]&#x000A;              },&#x000A;              "rubygems": {&#x000A;                "rack": [&#x000A;                  "1.3.6"&#x000A;                ],&#x000A;                "execjs": [ ],&#x000A;                "therubyracer": [ ],&#x000A;                "rails": [ "3.2.14" ]&#x000A;              }&#x000A;            },&#x000A;            "sources": {&#x000A;              "/home/ec2-user/sample": "https://s3.amazonaws.com/cloudformation-examples/CloudFormationRailsSample.zip"&#x000A;            },&#x000A;            "files": {&#x000A;              "/home/ec2-user/sample/config/database.yml": {&#x000A;                "content": {&#x000A;                  "Fn::Join": [&#x000A;                    "",&#x000A;                    [&#x000A;                      "development:\n",&#x000A;                      " adapter: mysql2\n",&#x000A;                      " encoding: utf8\n",&#x000A;                      " reconnect: false\n",&#x000A;                      " pool: 5\n",&#x000A;                      " database: ",&#x000A;                      {&#x000A;                        "Ref": "DBName"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " username: ",&#x000A;                      {&#x000A;                        "Ref": "DBUsername"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " password: ",&#x000A;                      {&#x000A;                        "Ref": "DBPassword"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " host: ",&#x000A;                      {&#x000A;                        "Fn::GetAtt": [&#x000A;                          "MySQLDatabase",&#x000A;                          "Endpoint.Address"&#x000A;                        ]&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " port: ",&#x000A;                      {&#x000A;                        "Fn::GetAtt": [&#x000A;                          "MySQLDatabase",&#x000A;                          "Endpoint.Port"&#x000A;                        ]&#x000A;                      },&#x000A;                      "\n"&#x000A;                    ]&#x000A;                  ]&#x000A;                },&#x000A;                "mode": "000644",&#x000A;                "owner": "root",&#x000A;                "group": "root"&#x000A;              }&#x000A;            }&#x000A;          }&#x000A;        }&#x000A;      },&#x000A;      "Properties": {&#x000A;        "ImageId": {&#x000A;          "Fn::FindInMap": [&#x000A;            "AWSRegionArch2AMI",&#x000A;            {&#x000A;              "Ref": "AWS::Region"&#x000A;            },&#x000A;            {&#x000A;              "Fn::FindInMap": [&#x000A;                "AWSInstanceType2Arch",&#x000A;                {&#x000A;                  "Ref": "InstanceType"&#x000A;                },&#x000A;                "Arch"&#x000A;              ]&#x000A;            }&#x000A;          ]&#x000A;        },&#x000A;        "InstanceType": {&#x000A;          "Ref": "InstanceType"&#x000A;        },&#x000A;        "SecurityGroups": [&#x000A;          {&#x000A;            "Ref": "WebServerSecurityGroup"&#x000A;          }&#x000A;        ],&#x000A;        "KeyName": {&#x000A;          "Ref": "KeyName"&#x000A;        },&#x000A;        "UserData": {&#x000A;          "Fn::Base64": {&#x000A;            "Fn::Join": [&#x000A;              "",&#x000A;              [&#x000A;                "#!/bin/bash -v\n",&#x000A;                "yum update -y aws-cfn-bootstrap\n",&#x000A;                "# Helper function\n",&#x000A;                "function error_exit\n",&#x000A;                "{\n",&#x000A;                " /opt/aws/bin/cfn-signal -e 1 -r \"$1\" '",&#x000A;                {&#x000A;                  "Ref": "WaitHandle"&#x000A;                },&#x000A;                "'\n",&#x000A;                " exit 1\n",&#x000A;                "}\n",&#x000A;                "# Install Rails packages\n",&#x000A;                "/opt/aws/bin/cfn-init -s ",&#x000A;                {&#x000A;                  "Ref": "AWS::StackId"&#x000A;                },&#x000A;                " -r LaunchConfig ",&#x000A;                " --region ",&#x000A;                {&#x000A;                  "Ref": "AWS::Region"&#x000A;                },&#x000A;                " || error_exit 'Failed to run cfn-init'\n",&#x000A;                "# Install anu other Gems, create the database and run a migration\n",&#x000A;                "cd /home/ec2-user/sample\n",&#x000A;                "bundle install || error_exit 'Failed to install bundle'\n",&#x000A;                "rake db:migrate || error_exit 'Failed to execute database migration'\n",&#x000A;                "# Startup the rails server\n",&#x000A;                "rails server -d\n",&#x000A;                "echo \"cd /home/ec2-user/sample\" >> /etc/rc.local\n",&#x000A;                "echo \"rails server -d\" >> /etc/rc.local\n",&#x000A;                "# All is well so signal success\n",&#x000A;                "/opt/aws/bin/cfn-signal -e 0 -r \"Rails application setup complete\" '",&#x000A;                {&#x000A;                  "Ref": "WaitHandle"&#x000A;                },&#x000A;                "'\n"&#x000A;              ]&#x000A;            ]&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WaitHandle": {&#x000A;      "Type": "AWS::CloudFormation::WaitConditionHandle"&#x000A;    },&#x000A;    "WaitCondition": {&#x000A;      "Type": "AWS::CloudFormation::WaitCondition",&#x000A;      "DependsOn": "WebServerGroup",&#x000A;      "Properties": {&#x000A;        "Handle": {&#x000A;          "Ref": "WaitHandle"&#x000A;        },&#x000A;        "Timeout": "1500",&#x000A;        "Count": {&#x000A;          "Ref": "WebServerCapacity"&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WebServerSecurityGroup": {&#x000A;      "Type": "AWS::EC2::SecurityGroup",&#x000A;      "Properties": {&#x000A;        "GroupDescription": "Enable HTTP access via port 3000 locked down to the load balancer + SSH access",&#x000A;        "SecurityGroupIngress": [&#x000A;          {&#x000A;            "IpProtocol": "tcp",&#x000A;            "FromPort": "3000",&#x000A;            "ToPort": "3000",&#x000A;            "SourceSecurityGroupOwnerId": {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "SourceSecurityGroup.OwnerAlias"&#x000A;              ]&#x000A;            },&#x000A;            "SourceSecurityGroupName": {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "SourceSecurityGroup.GroupName"&#x000A;              ]&#x000A;            }&#x000A;          },&#x000A;          {&#x000A;            "IpProtocol": "tcp",&#x000A;            "FromPort": "22",&#x000A;            "ToPort": "22",&#x000A;            "CidrIp": {&#x000A;              "Ref": "SSHLocation"&#x000A;            }&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    "DBSecurityGroup": {&#x000A;      "Type": "AWS::RDS::DBSecurityGroup",&#x000A;      "Properties": {&#x000A;        "GroupDescription": "Grant database access to web server",&#x000A;        "DBSecurityGroupIngress": {&#x000A;          "EC2SecurityGroupName": {&#x000A;            "Ref": "WebServerSecurityGroup"&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "MySQLDatabase": {&#x000A;      "Type": "AWS::RDS::DBInstance",&#x000A;      "Properties": {&#x000A;        "Engine": "MySQL",&#x000A;        "DBName": {&#x000A;          "Ref": "DBName"&#x000A;        },&#x000A;        "MultiAZ": {&#x000A;          "Ref": "MultiAZDatabase"&#x000A;        },&#x000A;        "MasterUsername": {&#x000A;          "Ref": "DBUsername"&#x000A;        },&#x000A;        "MasterUserPassword": {&#x000A;          "Ref": "DBPassword"&#x000A;        },&#x000A;        "DBInstanceClass": {&#x000A;          "Ref": "DBInstanceClass"&#x000A;        },&#x000A;        "DBSecurityGroups": [&#x000A;          {&#x000A;            "Ref": "DBSecurityGroup"&#x000A;          }&#x000A;        ],&#x000A;        "AllocatedStorage": {&#x000A;          "Ref": "DBAllocatedStorage"&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Outputs": {&#x000A;    "WebsiteURL": {&#x000A;      "Value": {&#x000A;        "Fn::Join": [&#x000A;          "",&#x000A;          [&#x000A;            "http://",&#x000A;            {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "DNSName"&#x000A;              ]&#x000A;            }&#x000A;          ]&#x000A;        ]&#x000A;      },&#x000A;      "Description": "URL for newly created Rails application"&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</pre>
+        </article>
+      </slide>
+      <slide class='fill nobackground' style='background-image: url(http://i3.kym-cdn.com/photos/images/original/000/327/827/43a.jpg)'>
+        <hgroup>
+          <h2 class='white'>Adding new stacks</h2>
+        </hgroup>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/stack.png'>
+        </aside>
+        <hgroup>
+          <h2>Dealing with multiple stacks</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>"God" stack with all resources</li>
+            <li>Nested stacks within single stack template</li>
+            <li>Template for each stack (copy/paste)</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>CloudFormation Tools</h2>
+        </hgroup>
+        <article>
+          <p>Helper tools for building templates</p>
+          <ul>
+            <li>cfn-pyplates (python)</li>
+            <li>drawcloud (ruby)</li>
+          </ul>
+        </article>
+      </slide>
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/hourglass.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h3>What are we really dealing with?</h3>
+        </article>
+      </slide>
+      <slide class='dark nobackground'>
+        <article class='flexbox vcenter auto-fadein'>
+          <img src='http://i.imgflip.com/4kwij.jpg'>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Hash tables</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Using hash tables as descriptions</li>
+            <ul>
+              <li>Chef resources</li>
+              <li>AWS resources</li>
+              <li>Application configurations</li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Lets use a DSL to create hashes</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Create hashes quickly</li>
+            <li>Programatically build and modify hashes</li>
+            <li>Merge multiple hashes to produce custom hashes</li>
+            <li>Do crazy stuff</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>AttributeStruct</h2>
+        </hgroup>
+        <article class='smaller'>
+          <p>DSL building</p>
+          <pre class='prettyprint' data-lang='ruby'>AttributeStruct.new do&#x000A;  config do&#x000A;    host 'localhost'&#x000A;    port 80&#x000A;    environment.user 'nobody'&#x000A;  end&#x000A;end</pre>
+          <p>Resulting hash</p>
+          <pre class='prettyprint' data-lang='ruby'>{&#x000A;  'config' => {&#x000A;    'host' => 'localhost',&#x000A;    'port' => 80,&#x000A;    'environment' => {&#x000A;      'user' => 'nobody'&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Builds on top of AttributeStruct</li>
+            <li>Provides AWS intrinsic functions</li>
+            <li>Automatically compatible with future AWS resources</li>
+            <li>Very small implementation</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation example</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='auto-scroll prettyprint' data-lang='ruby'>SparkleFormation.new('ec2_example') do&#x000A;  description "AWS CloudFormation Sample Template EC2InstanceSample"&#x000A;&#x000A;  parameters do&#x000A;    key_name do&#x000A;      description 'Name of an existing EC2 KeyPair to enable SSH access to the instance'&#x000A;      type 'String'&#x000A;    end&#x000A;  end&#x000A;&#x000A;  mappings.region_map do&#x000A;    _set('us-east-1', :ami => 'ami-7f418316')&#x000A;    _set('us-east-1', :ami => 'ami-7f418316')&#x000A;    _set('us-west-1', :ami => 'ami-951945d0')&#x000A;    _set('us-west-2', :ami => 'ami-16fd7026')&#x000A;    _set('eu-west-1', :ami => 'ami-24506250')&#x000A;    _set('sa-east-1', :ami => 'ami-3e3be423')&#x000A;    _set('ap-southeast-1', :ami => 'ami-74dda626')&#x000A;    _set('ap-northeast-1', :ami => 'ami-dcfa4edd')&#x000A;  end&#x000A;&#x000A;  resources do&#x000A;    my_instance do&#x000A;      type 'AWS::EC2::Instance'&#x000A;      properties do&#x000A;        key_name _cf_ref(:key_name)&#x000A;        image_id _cf_map(:region_map, 'AWS::Region', :ami)&#x000A;        user_data _cf_base64('80')&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end.compile._dump.to_json&#x000A;</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Resulting JSON</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='auto-scroll prettyprint' data-lang='json'>{&#x000A;  "Description": "AWS CloudFormation Sample Template EC2InstanceSample",&#x000A;  "Parameters": {&#x000A;    "KeyName": {&#x000A;      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",&#x000A;      "Type": "String"&#x000A;    }&#x000A;  },&#x000A;  "Mappings": {&#x000A;    "RegionMap": {&#x000A;      "Us-east-1": {&#x000A;        "Ami": "ami-7f418316"&#x000A;      },&#x000A;      "Us-west-1": {&#x000A;        "Ami": "ami-951945d0"&#x000A;      },&#x000A;      "Us-west-2": {&#x000A;        "Ami": "ami-16fd7026"&#x000A;      },&#x000A;      "Eu-west-1": {&#x000A;        "Ami": "ami-24506250"&#x000A;      },&#x000A;      "Sa-east-1": {&#x000A;        "Ami": "ami-3e3be423"&#x000A;      },&#x000A;      "Ap-southeast-1": {&#x000A;        "Ami": "ami-74dda626"&#x000A;      },&#x000A;      "Ap-northeast-1": {&#x000A;        "Ami": "ami-dcfa4edd"&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Resources": {&#x000A;    "MyInstance": {&#x000A;      "Type": "AWS::EC2::Instance",&#x000A;      "Properties": {&#x000A;        "KeyName": {&#x000A;          "Ref": "KeyName"&#x000A;        },&#x000A;        "ImageId": {&#x000A;          "Fn::FindInMap": [&#x000A;            "RegionMap",&#x000A;            {&#x000A;              "Ref": "AWS::Region"&#x000A;            },&#x000A;            "Ami"&#x000A;          ]&#x000A;        },&#x000A;        "UserData": {&#x000A;          "Fn::Base64": "80"&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>DRY Templates</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Components</li>
+            <ul>
+              <li>Static foundation</li>
+              <li>Merged based on load order</li>
+            </ul>
+            <li>Dynamics</li>
+            <ul>
+              <li>Reusable partials</li>
+              <li>Variable driven</li>
+              <li>Able to modify anything at "given state"</li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation Breakdown</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='auto-scroll prettyprint' data-lang='ruby' style='height: 40%'># ami component&#x000A;SparkleFormation.build do&#x000A;  parameters do&#x000A;    key_name do&#x000A;      description 'Name of an existing EC2 KeyPair to enable SSH access to the instance'&#x000A;      type 'String'&#x000A;    end&#x000A;    ...&#x000A;  end&#x000A;  mappings.region_map do&#x000A;    _set('us-east-1', :ami => 'ami-7f418316')&#x000A;    ...&#x000A;  end&#x000A;end</pre>
+          <pre class='auto-scroll prettyprint' data-lang='ruby' style='height: 40%'># ec2 dynamic&#x000A;SparkleFormation.dynamic(:ec2) do |_name|&#x000A;  resources("#{_name}_instance".to_sym)&#x000A;    type 'AWS::EC2::Instance'&#x000A;    properties do&#x000A;      key_name _cf_ref(:key_name)&#x000A;      image_id _cf_map(:region_map, 'AWS::Region', :ami)&#x000A;      user_data _cf_base64('80')&#x000A;    end&#x000A;  end&#x000A;end&#x000A;</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation template</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new('ec2_example').load(:ami).overrides do&#x000A;  description 'SparkleFormation built template'&#x000A;  [:node1, :node2, :node3].each do |_node_name|&#x000A;    SparkleFormation.insert(:ec2, self, _node_name)&#x000A;  end&#x000A;  <b>&#x000A;  resources.node1_instance.properties do&#x000A;    user_data _root.resources.node2_instance.properties.user_data&#x000A;  end&#x000A;  resources.node2_instance.properties._delete(:user_data)&#x000A;  </b>&#x000A;end</pre>
+          <ul>
+            <li>Modification to hash structure as we build</li>
+            <li>Access to other parts of the hash "tree"</li>
+            <li>Removal of parts of the hash</li>
+            <li>Results in few components, many dynamics slim templates</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Tooling</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>SparkleFormation is just a library</li>
+            <li>knife-cloudformation</li>
+            <ul>
+              <li>Chef knife plugin</li>
+              <li>No reliance on Chef (it's just an easy CLI integration)</li>
+              <li>Builds templates from SparkleFormations</li>
+              <li>Provides deep inspection into Stacks</li>
+              <li>Soon to be supporting stack "serialization"</li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/gear.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h3>CloudFormation knife plugin</h3>
+          <h4>Open spaces demo</h4>
+        </article>
+      </slide>
+      <slide class='thank-you-slide segue nobackground'>
+        <aside class='gdbar right'>
+          <img src='images/fry.jpg'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h2>Thank you!</h2>
+        </article>
+        <p class='auto-fadein' data-config-contact></p>
+      </slide>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/devopsdays-logo.png'>
+          </span>
+        </article>
+      </slide>
+      <slide class='backdrop'></slide>
+    </slides>
+  </body>
+  <script>
+    var inc_started = false;
+    var increment_every = 15 * 1000;
+    function toggle_auto_advance(){
+      if(!inc_started){
+        inc_started = true;
+        inc_slide();
+        inc();
+      } else {
+        inc_started = false;
+      }
+    }
+    
+    function inc_slide(){
+      var evt = document.createEvent('Event');
+      evt.initEvent('keydown', true, true);
+      evt.keyCode = 32;
+      document.dispatchEvent(evt);
+      $('body').trigger(evt);
+    }
+    
+    function inc(){
+      setTimeout(function(){
+        if(inc_started){
+          inc_slide();
+          inc();
+        }
+      }, increment_every);
+    }
+    jQuery('body').keypress(function(event){
+      if(event.which == 115){
+        toggle_auto_advance();
+      }
+    });
+    
+    :javascript
+      jQuery('body').keydown(function(event){
+        if(typeof increment_every != 'undefined'){
+          if(event.keyCode == 32){
+            setTimeout(function(){
+              auto_scroll = $(slidedeck.slides[slidedeck.curSlide_]).find('pre.auto-scroll').first();
+              console.log(auto_scroll);
+              if(auto_scroll.size() > 0){
+                setTimeout(function(){
+                  auto_scroll.animate({scrollTop: auto_scroll.prop('scrollHeight')}, increment_every - 1500);
+                }, 1000);
+                setTimeout(function(){
+                  auto_scroll.scrollTop(0);
+                }, increment_every);
+              }
+            }, 100);
+          }
+        }
+      });
+  </script>
+  <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</html>
