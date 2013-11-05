@@ -1,0 +1,297 @@
+<html>
+  <head>
+    <title>Presentation</title>
+    <meta charset='utf-8'>
+    <meta content='chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <link href='theme/css/default.css' media='all' rel='stylesheet'>
+    <link href='theme/css/phone.css' media='only screen and (max-device-width: 480px)' rel='stylesheet'>
+    <base target='_blank'>
+    <script src='js/jquery.min.js'></script>
+    <script data-main='js/slides' src='js/require-1.0.8.min.js'></script>
+  </head>
+  <body style='opacity: 0'>
+    <slides class='layout-widescreen'>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/devopsdays-logo.png'>
+          </span>
+        </article>
+      </slide>
+      <slide class='title-slide segue nobackground'>
+        <aside class='gdbar'>
+          <img src='images/fry.jpg'>
+        </aside>
+        <hgroup class='auto-fadin'>
+          <h1 data-config-title></h1>
+          <h2 data-config-subtitle></h2>
+          <p data-config-presenter></p>
+        </hgroup>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/profile.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            <code>`whoami`</code>
+          </h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Chris Roberts</li>
+            <li>Works at HeavyWater Operations</li>
+            <li>Pragmatic open source zealot</li>
+            <li>Ruby fanboy</li>
+            <li>Toolsmith</li>
+          </ul>
+        </article>
+      </slide>
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/hourglass.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>You will never 'find' time for anything. If you want time, you must make it.</q>
+          <div class='author'>Charles Buxton</div>
+        </article>
+      </slide>
+      <slide>
+        <aside class='gdbar top right' style='background: #cc6'>
+          <img src='images/clock.png'>
+        </aside>
+        <hgroup>
+          <h2>Time conservation</h2>
+        </hgroup>
+        <article>
+          <p>What's wasting my time?</p>
+          <ul class='build'>
+            <li>
+              VMs and tooling
+              <ul>
+                <li class='yellow'>Strict resource requirements</li>
+                <li class='red'>Time consuming startup and teardowns</li>
+                <li class='red'>Lack of cluster style building</li>
+              </ul>
+            </li>
+            <li>
+              Testing
+              <ul>
+                <li class='green'>Isolated testing</li>
+                <li class='red'>Integration testing</li>
+              </ul>
+            </li>
+            <li>
+              Existing Infrastructure
+              <ul>
+                <li class='red'>Remote Chef server</li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Existing tools</h2>
+        </hgroup>
+        <article>
+          <p>Cloud based</p>
+          <ul>
+            <li>Knife cloud plugins (ec2, rackspace, etc)</li>
+            <li>Spiceweasel - clusters</li>
+          </ul>
+          <p>Host based</p>
+          <ul>
+            <li>Virtualbox GUI/CLI</li>
+            <li>Vagrant</li>
+            <li>Hand tuning LXC</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/lightbulb.png'>
+        </aside>
+        <hgroup>
+          <h2>Development via LXC</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Fast node creations (clones)</li>
+            <li>No hard resource requirements (sharing)</li>
+            <li>Quick node refreshes</li>
+            <li>Some what easy cluster building</li>
+            <li>Local chef server instance</li>
+            <li>Increased cycles with less foot tapping</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/tools.png'>
+        </aside>
+        <hgroup>
+          <h2>Composing a new tool</h2>
+        </hgroup>
+        <article class='smaller'>
+          <div class='columns-2'>
+            <h3>Third Party Tools</h3>
+            <ul>
+              <li>LXC (Linux Containers)</li>
+              <li>
+                Chef
+                <ul>
+                  <li>chef-solo (host provision)</li>
+                  <li>knife core (ui tools)</li>
+                  <li>erchef / chef-zero</li>
+                </ul>
+                <li>Test Kitchen</li>
+                <li>ServerSpec</li>
+              </li>
+            </ul>
+            <h3>Existing Tools</h3>
+            <ul>
+              <li>
+                Cookbooks
+                <ul>
+                  <li>lxc (container management)</li>
+                  <li>chef-server-populator (chef server provision)</li>
+                </ul>
+                <li>
+                  Ruby
+                  <ul>
+                    <li>elecksee</li>
+                  </ul>
+                </li>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </slide>
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/hazard.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>Everything stinks till it's finished.</q>
+          <div class='author'>Dr. Seuss</div>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Wiring together existing tools</h2>
+        </hgroup>
+        <article>
+          <br>
+          <br>
+          <ul>
+            <li>Building for local development</li>
+            <li>Snowflaked workstation</li>
+            <li>Works on my machine</li>
+            <li>State assumptions</li>
+          </ul>
+        </article>
+      </slide>
+      <slide class='segue dark nobackground'>
+        <hgroup class='auto-fadein'>
+          <h2 class='reflect'>Vagabond</h2>
+          <h3>In the wild</h3>
+        </hgroup>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Installation and configuration</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='bash'>$> gem install vagabond&#x000A;$> vagabond init</pre>
+          <ul>
+            <li>Prompts for desired distributions</li>
+            <li>Provisions hosts system</li>
+            <li>Builds base containers for selected distributions</li>
+            <li>Builds base container for chef-server instances</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Vagabondfile (Hash)</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='prettyprint' data-lang='ruby'>{&#x000A;  :defaults => {&#x000A;    :template => 'ubuntu_1204'&#x000A;  },&#x000A;  :nodes => {&#x000A;    :ubuntu1204 => {&#x000A;      :template => 'ubuntu_1204',&#x000A;      :run_list => []&#x000A;    }&#x000A;  },&#x000A;  :clusters => {},&#x000A;  :server => {&#x000A;    :enabled => false,&#x000A;    :zero => false,&#x000A;    :librarian => false,&#x000A;    :berkshelf => false,&#x000A;    :auto_upload => false&#x000A;  },&#x000A;  :sudo => true&#x000A;}</pre>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Vagabondfile (DSL)</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='prettyprint' data-lang='ruby'>Vagabondfile.describe do&#x000A;  defaults do&#x000A;    template 'ubuntu_1204'&#x000A;  end&#x000A;  nodes do&#x000A;    aptcacher.run_list ['recipe[apt::cacher-ng]']&#x000A;    aptclient.run_list ['recipe[apt::cacher-client]']&#x000A;  end&#x000A;  clusters do&#x000A;    cacher ['aptcacher', 'aptclient']&#x000A;  end&#x000A;  templates do&#x000A;    ubuntu_1204_2G do&#x000A;      base 'ubuntu_1204'&#x000A;      memory.ram '2G'&#x000A;      memory.swap '512M'&#x000A;    end&#x000A;  end&#x000A;  server.enabled true&#x000A;  callbacks do&#x000A;    destroy [&#x000A;      "vagabond knife node delete -y ${NAME}",&#x000A;      "vagabond knife client delete -y ${NAME}"&#x000A;    ]&#x000A;  end&#x000A;end&#x000A;</pre>
+        </article>
+      </slide>
+      <slide class='dark nobackground'>
+        <article class='flexbox vcenter auto-fadein'>
+          <h2 class='white'>Ephemeral</h2>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Test kitchen integration</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Maps platforms to containers</li>
+            <li>Adds `clusters` options</li>
+            <li>Enables custom test-kitchen run</li>
+            <ul>
+              <li>Start chef server</li>
+              <li>Build all nodes in cluster</li>
+              <li>Run tests on all nodes</li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Server Spec</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Integration/acceptance testing</li>
+            <li>Run list specific specs</li>
+            <li>Tooling agnostic</li>
+          </ul>
+        </article>
+      </slide>
+      <slide>
+        <hgroup>
+          <h2>Run vagabond run!</h2>
+        </hgroup>
+        <article>
+          <iframe border='0' height='516' id='shelr_frame' scrolling='no' src='http://shelr.tv/records/520d22b296608048d2000071/embed' width='650'></iframe>
+        </article>
+      </slide>
+      <slide class='thank-you-slide segue nobackground'>
+        <aside class='gdbar right'>
+          <img src='images/fry.jpg'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h2>Thank you!</h2>
+        </article>
+        <p class='auto-fadein' data-config-contact></p>
+      </slide>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/devopsdays-logo.png'>
+          </span>
+        </article>
+      </slide>
+      <slide class='backdrop'></slide>
+    </slides>
+  </body>
+  <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</html>
