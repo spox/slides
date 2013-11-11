@@ -25,4 +25,4 @@ which should hopefully be the presentation. Yay!
 
 * Based entirely from: https://code.google.com/p/io-2012-slides/
 * Sprinkled with: [haml](http://haml.info/), [sass](http://sass-lang.com/), and [guard](https://github.com/guard/guard)
-* Repository: https://github.com/chrisroberts/gio-slides
+* Repository: https://github.com/spox/slides
