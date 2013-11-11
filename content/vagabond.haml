@@ -170,7 +170,7 @@
   %hgroup
     %h2 Vagabondfile (DSL)
   %article.smaller
-    %pre.prettyprint{'data-lang' => 'ruby'}
+    %pre.prettyprint{'data-lang' => 'ruby', :class => 'auto-scroll'}
       :preserve
         Vagabondfile.describe do
           defaults do
@@ -204,10 +204,45 @@
     %h2.white Ephemeral
 
 %slide
-  - test kitchen
+  %hgroup
+    %h2 Test kitchen integration
+  %article
+    %ul
+      %li Maps platforms to containers
+      %li Adds `clusters` options
+      %li Enables custom test-kitchen run
+      %ul
+        %li Start chef server
+        %li Build all nodes in cluster
+        %li Run tests on all nodes
 
 %slide
-  - specs
+  %hgroup
+    %h2 Server Spec
+  %article
+    %ul
+      %li Integration/acceptance testing
+      %li Run list specific specs
+      %li Tooling agnostic
+
+%slide
+  %hgroup
+    %h2 More in-depth tests
+  %article
+    %p Do stuff and then test
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        spec do
+          clusters do
+            test do
+              provision do
+                times 2
+                spec :after_2
+                after.every.run 'ps -AH ux'
+              end
+            end
+          end
+        end
 
 %slide
   %hgroup
