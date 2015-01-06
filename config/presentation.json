@@ -1,7 +1,7 @@
 {
     "settings": {
-        "title": "Vagabond",
-        "subtitle": "Infrastructure development and testing tool",
+        "title": "SparkleFormation",
+        "subtitle": "Programmatically generating CloudFormation templates",
         "useBuilds": true,
         "usePrettify": true,
         "enableSlideAreas": true,
@@ -13,8 +13,14 @@
         ]
     },
     "presenters": [{
+        "name": "Michael Weinberg",
+        "company": "Director of Operations<br>Heavy Water",
+        "twitter": "@luckymike",
+        "www": "http://www.luckymike.com",
+        "github": "http://github.com/luckymike"
+    }, {
         "name": "Chris Roberts",
-        "company": "Percusive Maintenance Engineer<br>HeavyWater Operations",
+        "company": "Percusive Maintenance Engineer<br>Heavy Water",
         "twitter": "@_spox",
         "www": "http://code.chrisroberts.org",
         "github": "http://github.com/chrisroberts"
@@ -22,7 +28,7 @@
     "layouts": {
         "template": "base",
         "theme": "default",
-        "bookend_slide_image": "devopsdays-logo.png",
+        "bookend_slide_image": "hw-logo-big.png",
         "title_segue_image": "fry.jpg",
         "thank_you_segue_image": "fry.jpg",
         "default_segue_image": null,
@@ -30,7 +36,7 @@
         "increment_every": null
     },
     "styling": {
-        "social-tags": "'<https://github.com/chrisroberts>'",
+        "social-tags": "'<https://www.hw-ops.com>'",
         "brand-small-icon-size": "30px",
         "brand-small-icon-file": "'fry.jpg'",
         "title-page-image-bottom": "'hw-logo.png'"
