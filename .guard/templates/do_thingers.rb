@@ -82,7 +82,7 @@ module Guard
 
     def update_paths(paths)
       paths.each do |path|
-        next unless File.file?(path)
+        next if !File.file?(path) || path.start_with?('output/')
         land_at = landing_file(path)
         unless(File.exists?(land_at) && FileUtils.compare_file(path, land_at))
           unless(File.directory?(File.dirname(land_at)))
