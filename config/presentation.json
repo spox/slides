@@ -28,17 +28,17 @@
     "layouts": {
         "template": "base",
         "theme": "default",
-        "bookend_slide_image": "hw-logo-big.png",
+        "bookend_slide_image": "hw_logo_b_bottom_512.png",
         "title_segue_image": "fry.jpg",
-        "thank_you_segue_image": "fry.jpg",
+        "thank_you_segue_image": "hw_logo_72.png",
         "default_segue_image": null,
         "thank_you_title": null,
         "increment_every": null
     },
     "styling": {
         "social-tags": "'<https://www.hw-ops.com>'",
-        "brand-small-icon-size": "30px",
-        "brand-small-icon-file": "'fry.jpg'",
-        "title-page-image-bottom": "'hw-logo.png'"
+        "brand-small-icon-size": "32px",
+        "brand-small-icon-file": "'hw_logo_32.png'",
+        "title-page-image-bottom": "'hw_logo_72.png'"
     }
 }

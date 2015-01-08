@@ -1,0 +1,16 @@
+%slide
+  %hgroup
+    %h2 Knife Cloudformation Usage
+  %article.smaller
+    %p Clone sample repository and install bundle
+    %pre.printpretty{'data-lang' => 'bash'}
+      :preserve
+        $> git clone git://github.com/hw-labs/loft-sparkles.git
+        $> cd loft-sparkles && bundle install
+        $> bundle exec knife cloudformation --help
+    %br
+    %p Build a stack
+    %pre.printpretty{'data-lang' => 'bash'}
+      :preserve
+        $> bundle exec knife cloudformation create my-stack \
+          --file cloudformation/templates/modular.rb --processing

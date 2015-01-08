@@ -1,12 +1,12 @@
 %slide
   %hgroup
     %h2
-      SparkleFormation Template
+      SparkleFormation AutoScaling Template
   %article.smaller
     %p
       %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
         :preserve
-          # cloudformation/templates/modular.rb
+          # cloudformation/templates/modular_asg.rb
           SparkleFormation.new(:modular).load(:base).overrides do
 
             dynamic!(:security_group, :sparkle,
@@ -22,13 +22,17 @@
               }
             )
 
-            dynamic!(:ec2_node, :sparkle) do
-              properties do
-                security_groups [ref!(:sparkle_security_group)]
-                user_data registry!(:user_data_nginx, :sparkle_ec2_node)
-              end
-              registry!(:metadata_nginx)
+            dynamic!(:autoscaling, :sparkle,
+              :user_data => :user_data_nginx,
+              :registry => :metadata_nginx
+            )
+
+            resources.sparkle_autoscaling_group do
+              properties.security_groups [ref!(:sparkle_security_group)]
             end
+
+            parameters.sparkle_asg_min_size.default 5
+            parameters.sparkle_asg_max_size.default 5
 
           end
       %article.smaller
