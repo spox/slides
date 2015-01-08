@@ -72,25 +72,26 @@
         }
       });
 
-    :javascript
-      jQuery('body').keydown(function(event){
-        if(typeof increment_every != 'undefined'){
-          if(event.keyCode == 32){
+  :javascript
+    jQuery('body').keydown(function(event){
+      if(typeof increment_every == 'undefined'){
+        increment_every = 20000;
+      }
+      if(event.keyCode == 32){
+        setTimeout(function(){
+          auto_scroll = $(slidedeck.slides[slidedeck.curSlide_]).find('pre.auto-scroll').first();
+          console.log(auto_scroll);
+          if(auto_scroll.size() > 0){
             setTimeout(function(){
-              auto_scroll = $(slidedeck.slides[slidedeck.curSlide_]).find('pre.auto-scroll').first();
-              console.log(auto_scroll);
-              if(auto_scroll.size() > 0){
-                setTimeout(function(){
-                  auto_scroll.animate({scrollTop: auto_scroll.prop('scrollHeight')}, increment_every - 1500);
-                }, 1000);
-                setTimeout(function(){
-                  auto_scroll.scrollTop(0);
-                }, increment_every);
-              }
-            }, 100);
+              auto_scroll.animate({scrollTop: auto_scroll.prop('scrollHeight')}, increment_every - 1500);
+            }, 1000);
+            setTimeout(function(){
+              auto_scroll.scrollTop(0);
+            }, increment_every);
           }
-        }
-      });
+        }, 100);
+      }
+    });
 
   :plain
     <!--[if IE]>
