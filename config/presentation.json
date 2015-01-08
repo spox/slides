@@ -29,7 +29,7 @@
         "template": "base",
         "theme": "default",
         "bookend_slide_image": "hw_logo_b_bottom_512.png",
-        "title_segue_image": "fry.jpg",
+        "title_segue_image": "cloud.png",
         "thank_you_segue_image": "hw_logo_72.png",
         "default_segue_image": null,
         "thank_you_title": null,
