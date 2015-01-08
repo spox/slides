@@ -1,0 +1,33 @@
+%slide
+  %hgroup
+    %h2
+      SparkleFormation Template
+  %article.smaller
+    %p
+      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
+        :preserve
+          # cloudformation/templates/modular.rb
+          SparkleFormation.new(:modular).load(:base).overrides do
+
+            dynamic!(:security_group, :sparkle,
+              :ingress => {
+                :ssh => {
+                  :protocol => 'tcp',
+                  :port => 22
+                },
+                :web => {
+                  :protocol => 'tcp',
+                  :port => 80
+                }
+              }
+            )
+
+            dynamic!(:ec2_node, :sparkle) do
+              properties.security_groups [ref!(:sparkle_security_group)]
+              registry!(:nginx)
+            end
+
+          end
+      %article.smaller
+        %center
+          %p.smaller https://github.com/hw-labs/loft-sparkles

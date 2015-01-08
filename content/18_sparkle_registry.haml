@@ -1,0 +1,24 @@
+%slide
+  %hgroup
+    %h2
+      SparkleFormation Registry
+  %article.smaller
+    %p
+      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
+        :preserve
+          # cloudformation/registry/nginx.rb
+          SfnRegistry.register(:nginx) do |_name, _config|
+            metadata('AWS::CloudFormation::Init') do
+              _camel_keys_set(:auto_disable)
+              config do
+                services.sysvinit.nginx do
+                  enabled true
+                  ensureRunning true
+                end
+              end
+            end
+
+          end
+      %article.smaller
+        %center
+          %p.smaller https://github.com/hw-labs/loft-sparkles
