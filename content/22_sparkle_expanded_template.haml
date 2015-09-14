@@ -1,35 +1,12 @@
 %slide
   %hgroup
     %h2
-      SparkleFormation Expanded Template
+      AWS CloudFormation
   %article.smaller
-    %p
-      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
-        :preserve
-          # cloudformation/templates/modular_expanded.rb
-          SparkleFormation.new(:modular_expanded).load(:base).overrides do
-
-            dynamic!(:security_group, :sparkle,
-              :ingress => {
-                :ssh => {
-                  :protocol => 'tcp',
-                  :port => 22
-                },
-                :web => {
-                  :protocol => 'tcp',
-                  :port => 80
-                }
-              }
-            )
-
-            5.times do |i|
-              dynamic!(:ec2_node, "sparkle\#{i}", :user_data => :user_data_nginx) do
-                properties.security_groups [ref!(:sparkle_security_group)]
-                registry!(:metadata_nginx)
-              end
-            end
-
-          end
-      %article.smaller
-        %center
-          %p.smaller https://github.com/hw-labs/loft-sparkles
+    %p CFN: "Configuration Management & Cloud Orchestration"
+    %ul.build
+      %li Templates to describe infrastructure
+      %li Limited but powerful number of "runtime" functions
+      %li Reliably reproducable infrastructure
+      %li The most amazing API
+      %li The worst interface in the world

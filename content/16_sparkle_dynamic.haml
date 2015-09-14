@@ -1,102 +1,16 @@
 %slide
   %hgroup
     %h2
-      SparkleFormation Dynamics
-  %article.smaller
+      The `If` Too Big
+  %article
     %p
-      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
-        :preserve
-          # cloudformation/dynamics/instance_common.rb
-          SparkleFormation.dynamic(:instance_common) do |_name, _config|
-            parameters do
-              set!("\#{_name}_image_id".to_sym) do
-                default 'ami-ad42009d'
-                allowed_values ['ami-ad42009d', 'ami-c7d092f7']
-                description 'AMI Image ID'
-                type 'String'
-              end
-
-              set!("\#{_name}_instance_type".to_sym) do
-                default 'm1.small'
-                description 'Size of instance'
-                type 'String'
-              end
-
-              set!("\#{_name}_key_name".to_sym) do
-                default 'sparkle-key'
-                description 'EC2 SSH key name'
-                type 'String'
-              end
-            end
-          end
-
-          # cloudformation/dynamics/security_group.rb
-          SparkleFormation.dynamic(:security_group) do |_name, _config={}|
-
-            resources do
-
-              set!("\#{_name}_security_group".to_sym) do
-                type 'AWS::EC2::SecurityGroup'
-                properties do
-                  group_description "Instance security group (SparkleFormation Example)"
-                end
-              end
-
-              _config[:ingress].each do |rule, settings|
-
-                set!("\#{_name}_ingress_\#{rule}".to_sym) do
-                  type 'AWS::EC2::SecurityGroupIngress'
-                  properties do
-                    group_name ref!("\#{_name}_security_group".to_sym)
-                    ip_protocol settings[:protocol]
-                    from_port settings[:port]
-                    to_port settings[:port]
-                    if settings[:source_security_group]
-                      source_security_group settings[:source_security_group]
-                    else
-                      cidr_ip settings[:cidr] || '0.0.0.0/0'
-                    end
-                  end
-                end
-              end
-
-            end
-
-          end
-
-          # cloudformation/dynamics/ec2_node.rb
-          SparkleFormation.dynamic(:ec2_node) do |_name, _config={}|
-
-            dynamic!(:instance_common, :sparkle, _name)
-
-            ec2_instance = nil
-
-            resources do
-
-              ec2_instance = set!("\#{_name}_ec2_node".to_sym) do
-                type 'AWS::EC2::Instance'
-                properties do
-                  image_id ref!("\#{_name}_image_id".to_sym)
-                  instance_type ref!("\#{_name}_instance_type".to_sym)
-                  key_name ref!("\#{_name}_key_name".to_sym)
-                  if(_config[:user_data])
-                    user_data registry!(_config[:user_data], "\#{_name}_ec2_node".to_sym)
-                  end
-                end
-              end
-
-            end
-
-            outputs do
-              set!("\#{_name}_ec2_node_address".to_sym) do
-                description "Public address of \#{_name} node"
-                value attr!("\#{_name}_ec2_node".to_sym, 'PublicIp')
-              end
-            end
-
-            ec2_instance
-
-          end
-      %article.smaller
-        %center
-          %p.smaller https://github.com/hw-labs/loft-sparkles
+      Functional and solved the immediate problem. Some
+      gripes persisted:
+    %ul
+      %li Heavy SSH usage
+      %li DRY but lots of shell
+      %li Walking access point
+    %p Straw that broke the camel's back:
+    %ul.build
+      %li.red
+        %b Intermittent network failures

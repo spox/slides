@@ -1,16 +1,18 @@
 %slide
   %hgroup
-    %h2 Knife Cloudformation Usage
-  %article.smaller
-    %p Clone sample repository and install bundle
-    %pre.printpretty{'data-lang' => 'bash'}
-      :preserve
-        $> git clone git://github.com/hw-labs/loft-sparkles.git
-        $> cd loft-sparkles && bundle install
-        $> bundle exec knife cloudformation --help
-    %br
-    %p Build a stack
-    %pre.printpretty{'data-lang' => 'bash'}
-      :preserve
-        $> bundle exec knife cloudformation create my-stack \
-          --file cloudformation/templates/modular.rb --processing
+    %h2 Link the Code to the Infra
+  %article
+    %p
+      Lets use
+      %strike Jenkins
+      Jackal!
+    %p
+      Jackal is a framework for creating simple services. These
+      services can be chained together.
+    %p
+      To steal from someone more powerful than me:
+      %ul.build
+        %li Like a series of tubes
+        %li But makes pipelines
+    %p
+      Why jackal? Come to the workshop and find out!

@@ -1,45 +1,16 @@
 %slide
+  %aside{:class => 'gdbar top right'}
+    %img{:src => 'images/recycle.png'}
   %hgroup
-    %h2
-      SparkleFormation Registry
-  %article.smaller
-    %p
-      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
-        :preserve
-          # cloudformation/registry/metadata_nginx.rb
-          SfnRegistry.register(:metadata_nginx) do |_name, _config|
-            metadata('AWS::CloudFormation::Init') do
-              _camel_keys_set(:auto_disable)
-              config do
-                services.sysvinit.nginx do
-                  enabled true
-                  ensureRunning true
-                end
-              end
-            end
-
-          end
-
-          # cloudformation/registry/user_data_nginx.rb
-          SfnRegistry.register(:user_data_nginx) do |_name, _config|
-            base64!(
-              join!(
-                "#!/bin/bash\n",
-                "yum -q -y install python-setuptools nginx\n",
-                "apt-get -q -y install python-setuptools nginx\n",
-                "easy_install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
-                '/usr/local/bin/cfn-init -v --region ',
-                ref!('AWS::Region'),
-                ' -s ',
-                ref!('AWS::StackName'),
-                " -r \#{_process_key(_name.to_sym)} --access-key ",
-                ref!(:stack_iam_access_key),
-                ' --secret-key ',
-                attr!(:stack_iam_access_key, :secret_access_key),
-                "\n"
-              )
-            )
-          end
-      %article.smaller
-        %center
-          %p.smaller https://github.com/hw-labs/loft-sparkles
+    %h2 Vagabond Origin
+  %article
+    %p Born from rage and frustration
+    %ul.build
+      %ul
+        %li Handful of scripts + LXC
+        %li DSL inspired from previous DRY
+        %li Large local cluster builds fast and reliable
+      %ul
+        %li Seeing a pattern in description
+        %li Implemented helpers for pattern
+        %li Turtles all the way down

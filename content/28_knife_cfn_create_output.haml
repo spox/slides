@@ -1,6 +1,14 @@
 %slide
   %hgroup
-    %h2 Building a stack
+    %h2 All the Parts
   %article
-    %center
-      %iframe{:scrolling => 'no', :style => 'width: 600px; height: 450px;', :width => '600', :border => '0', :height => '450', :id => 'shelr_frame', :src => 'https://7b7d7f3d.ngrok.com/embed/c3BveC9wdWJsaWMvMTQyMDc2NjEzNC1iYXNpYy1jcmVhdGUuanNvbg=='}
+    %p
+      Tools configured:
+      %ul.build
+        %ul
+          %li Chef to code the configuration
+          %li SparkleFormation to code the infrastructure
+          %li GitHub to store the code
+          %li AWS CFN to provide the infrastructure
+          %li Jackal to glue GitHub and AWS together
+        %li.green Push tag, receive infrastructure
