@@ -1,13 +1,13 @@
 {
     "settings": {
-        "title": "Infrastructure as Code",
-        "subtitle": "It's a Horse, not a Unicorn",
-        "useBuilds": true,
+        "title": "SparkleFormation",
+        "subtitle": "Unicorns and Rainbows, wrapped with Ruby",
+        "useBuilds": false,
         "usePrettify": true,
         "enableSlideAreas": true,
-        "enableTouch": true,
+        "enableTouch": false,
         "favIcon": "images/favicon.jpg",
-        "incrementEvery": false,
+        "incrementEvery": 15,
         "incrementLoop": false,
         "fonts": [
             "Open Sans:regular,semibold,italic,italicsemibold",
@@ -16,7 +16,7 @@
     },
     "presenters": [{
         "name": "Chris Roberts",
-        "company": "Percusive Maintenance Engineer<br>Heavy Water",
+        "company": "Recursive Turtle Stacker<br>Heavy Water",
         "twitter": "@_spox",
         "www": "http://code.chrisroberts.org",
         "github": "http://github.com/chrisroberts"
@@ -25,7 +25,7 @@
         "template": "base",
         "theme": "default",
         "bookend_slide_image": "hw_logo_b_bottom_512.png",
-        "title_segue_image": "cloud.png",
+        "title_segue_image": "stack.png",
         "thank_you_segue_image": "hw_logo_72.png",
         "default_segue_image": null,
         "thank_you_title": null,
