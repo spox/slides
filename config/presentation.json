@@ -1,24 +1,20 @@
 {
     "settings": {
-        "title": "SparkleFormation",
-        "subtitle": "Programmatically generating CloudFormation templates",
+        "title": "Infrastructure as Code",
+        "subtitle": "It's a Horse, not a Unicorn",
         "useBuilds": true,
         "usePrettify": true,
         "enableSlideAreas": true,
         "enableTouch": true,
         "favIcon": "images/favicon.jpg",
+        "incrementEvery": false,
+        "incrementLoop": false,
         "fonts": [
             "Open Sans:regular,semibold,italic,italicsemibold",
             "Inconsolata"
         ]
     },
     "presenters": [{
-        "name": "Michael Weinberg",
-        "company": "Director of Operations<br>Heavy Water",
-        "twitter": "@luckymike",
-        "www": "http://www.luckymike.com",
-        "github": "http://github.com/luckymike"
-    }, {
         "name": "Chris Roberts",
         "company": "Percusive Maintenance Engineer<br>Heavy Water",
         "twitter": "@_spox",
@@ -36,7 +32,7 @@
         "increment_every": null
     },
     "styling": {
-        "social-tags": "'<https://www.hw-ops.com>'",
+        "social-tags": "'<http://heavywater.io>'",
         "brand-small-icon-size": "32px",
         "brand-small-icon-file": "'hw_logo_32.png'",
         "title-page-image-bottom": "'hw_logo_72.png'"
