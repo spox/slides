@@ -1,0 +1,683 @@
+<html>
+  <head>
+    <title>Presentation</title>
+    <meta charset='utf-8'>
+    <meta content='chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <link href='theme/css/default.css' media='all' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' media='all' rel='stylesheet'>
+    <link href='theme/css/phone.css' media='only screen and (max-device-width: 480px)' rel='stylesheet'>
+    <base target='_blank'>
+    <script src='js/jquery.min.js'></script>
+    <script data-main='js/slides' src='js/require-1.0.8.min.js'></script>
+  </head>
+  <body style='opacity: 0'>
+    <slides class='layout-widescreen'>
+      <slide class='fill nobackground' style='background-image: url(/images/autobacon.jpg); background-repeat: norepeat; background-position: center; background-size: contian;'>
+        <div style='position: absolute; left: 10px; bottom: 30px; color: black; font-size: 80%;'>
+          http://store.glennz.com/products/autobacon
+        </div>
+      </slide>
+      <slide class='title-slide segue nobackground'>
+        <aside class='gdbar'>
+          <img src='images/cloud.png'>
+        </aside>
+        <hgroup class='auto-fadin'>
+          <h1 data-config-title></h1>
+          <h2 data-config-subtitle></h2>
+          <p data-config-presenter></p>
+        </hgroup>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/fry.png'>
+        </aside>
+        <hgroup>
+          <pre class='prettyprint' data-lang=''>> whoami</pre>
+        </hgroup>
+        <article>
+          <p>Chris Roberts</p>
+          <ul>
+            <li>Work at Heavy Water</li>
+            <li>Developer / Toolsmith</li>
+            <li>Pragmatic Open Source Zealot</li>
+            <li>Tirelessly Striving to be Lazy</li>
+            <li>Not Really a Believer of Magic</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/caution.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>Unicorns," I said. "Very dangerous. You go first.</q>
+          <div class='author'>Jim Butcher, Summer Knight</div>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar right'>
+          <img src='images/compose.png'>
+        </aside>
+        <hgroup>
+          <h2>Searching for Unicorns</h2>
+        </hgroup>
+        <article>
+          <p>What is a "unicorn"</p>
+          <ul class='build'>
+            <li>Goat like animal</li>
+            <li>Horse like animal</li>
+            <li>Has a goat like beard</li>
+            <li>Is winged</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>"Infrastructure as Code" Unicorn</h2>
+        </hgroup>
+        <article>
+          <p>What is Infrastructure as Code</p>
+          <ul>
+            <li>No correct answer</li>
+            <li>Many correct answers</li>
+            <li>Lots of people searching for different things</li>
+            <ul class='build'>
+              <li>Multiple classifications</li>
+              <li>All paths lead forward</li>
+            </ul>
+          </ul>
+          <ul class='build'>
+            <li>My unicorn</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/bacon.png); background-repeat: norepeat; background-position: center; background-size: contain;'></slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/infra.png); background-repeat: norepeat; background-position: center; background-size: contain;'></slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/globe.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>If the road is easy, you're likely going the wrong way.</q>
+          <div class='author'>Terry Goodkind</div>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/ruby.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            YARJ
+          </h2>
+        </hgroup>
+        <article>
+          <p>Yet Another Rails Job</p>
+          <ul class='build'>
+            <li>Really like Ruby</li>
+            <li>No operations team</li>
+            <li>Environment evolved</li>
+            <li>Don't touch anything</li>
+            <li>Search and pray</li>
+            <li>Any problem == panic</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img class='build-hide' src='images/hellyeah.jpg'>
+        </aside>
+        <hgroup>
+          <h2>
+            Introduction to Automation
+          </h2>
+        </hgroup>
+        <article>
+          <p>Detangling the rat's nest</p>
+          <ul class='build'>
+            <li>Complete overhaul using Chef</li>
+            <li>Extracting setup knowledge to code</li>
+            <li>Predictable reproducibility</li>
+            <li>Easy additions/replacements</li>
+            <li>No golden images</li>
+            <li class='build-show green'>
+              <b>
+                <u>Amazing</u>
+              </b>
+            </li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/typing.png'>
+        </aside>
+        <hgroup>
+          <h2>OMG I'm Infrastructure as Coding!</h2>
+        </hgroup>
+        <article>
+          <p>Found my way to greener grass.</p>
+          <ul>
+            <li>Digging into chef code base</li>
+            <li>Started submitting PRs for new features</li>
+            <ul>
+              <li>Dynamic runlist modifications</li>
+              <li>Process forking</li>
+              <li>Lazy attributes</li>
+            </ul>
+            <li>Writing cookbooks for all the things</li>
+            <ul>
+              <b>This is the future people!</b>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/cat.gif); background-repeat: norepeat; background-position: center; background-size: contain;'></slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/thoughtful.jpg'>
+        </aside>
+        <hgroup>
+          <h2>
+            Not Really Infrastructure as Code
+          </h2>
+        </hgroup>
+        <article>
+          <p>
+            I was told this was infrastructure as code!
+            <ul class='build'>
+              <ul>
+                <li>
+                  <b>Infrastructure as Code</b>
+                </li>
+                <ul>
+                  <li>Term was used too loosely</li>
+                  <li>
+                    Meant
+                    <b>
+                      <u>any</u>
+                    </b>
+                    of the things not
+                    <b>
+                      <u>all</u>
+                    </b>
+                    the things
+                  </li>
+                </ul>
+              </ul>
+              <ul>
+                <li>
+                  <b>Configuration as code</b>
+                </li>
+                <ul>
+                  <li>Nodes were faster (create/replace)</li>
+                  <li>Configuration knowledge in code</li>
+                </ul>
+              </ul>
+              <ul>
+                <li>
+                  <b>Work to be done</b>
+                </li>
+                <ul>
+                  <li>Still snowflaking resources</li>
+                  <li>Still too many bus factors</li>
+                </ul>
+              </ul>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/globe.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>... a true creator is necessity, which is the mother of our invention.</q>
+          <div class='author'>Plato, The Republic</div>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/tools.png'>
+        </aside>
+        <hgroup>
+          <h2>Need Drives Creation</h2>
+        </hgroup>
+        <article>
+          <p>Building collections of instances one at a time is boring</p>
+          <ul>
+            <li>Slow and tedious</li>
+            <li>Testing required fresh builds</li>
+            <li>Development required existing builds</li>
+            <li>Wasting time waiting</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/spiceweasel.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            Spiceweasel: More Than Seasoning
+          </h2>
+        </hgroup>
+        <article>
+          <p>Using Matt Ray's Spiceweasel tool for building clusters</p>
+          <ul>
+            <li>Could mostly build clusters</li>
+            <ul>
+              <li>Serialized configuration meant copies</li>
+              <li>Needed more command support</li>
+            </ul>
+            <li>Added required command and config support</li>
+            <li>Successful clusters with single command*</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar top left'>
+          <div class='asterisk' style='width: 100%; text-align: right; height: 100%; vertical-align: middle;'>
+            <i class='fa fa-asterisk fa-3x' style='padding-top: 8px; padding-right: 5px; color: #5C5B5B;'></i>
+          </div>
+        </aside>
+        <article>
+          <div class='spacer' style='height: 40%'></div>
+          <ul>
+            <ul>
+              <li>
+                <b>
+                  <u>If</u>
+                </b>
+                everything runs successfully
+              </li>
+              <li>
+                <b>
+                  <u>If</u>
+                </b>
+                my connection stays stable
+              </li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/rocket.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            The `If` Too Big
+          </h2>
+        </hgroup>
+        <article>
+          <p>
+            Functional and solved the immediate problem. Some
+            gripes persisted:
+          </p>
+          <ul>
+            <li>Heavy SSH usage</li>
+            <li>DRY but lots of shell</li>
+            <li>Walking access point</li>
+          </ul>
+          <p>Straw that broke the camel's back:</p>
+          <ul class='build'>
+            <li class='red'>
+              <b>Intermittent network failures</b>
+            </li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/rage.png); background-repeat: norepeat; background-position: center; background-size: contain;'></slide>
+      
+      <slide>
+        <aside class='gdbar top right'>
+          <img src='images/flame.png'>
+        </aside>
+        <hgroup>
+          <h2>Vagabond Origin</h2>
+        </hgroup>
+        <article>
+          <p>Born from rage and frustration</p>
+          <ul class='build'>
+            <ul>
+              <li>Handful of scripts + LXC</li>
+              <li>DSL inspired from previous DRY</li>
+              <li>Large local cluster builds fast and reliable</li>
+            </ul>
+            <ul>
+              <li>Seeing a pattern in description</li>
+              <li>Implemented helpers for pattern</li>
+              <li>Turtles all the way down</li>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/hashes.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color:#888;'></slide>
+      
+      <slide>
+        <article class='smaller'>
+          <p>
+            From the DSL:
+            <pre class='prettyprint auto-scroll' data-lang='ruby' style='height: 40%'>Configuration.new do&#x000A;  defaults do&#x000A;    template 'ubuntu_1404'&#x000A;    attributes.creator ENV['USER']&#x000A;  end&#x000A;  nodes do&#x000A;    database.run_list ['role[database]']&#x000A;  end&#x000A;end</pre>
+          </p>
+          <p>
+            Into primatives:
+            <pre class='prettyprint auto-scroll' data-lang='ruby' style='height: 40%'>{&#x000A;  "nodes" => {&#x000A;    "database" => {&#x000A;      "template" => "ubuntu_1404",&#x000A;      "run_list" => [&#x000A;        "role[database]"&#x000A;      ],&#x000A;      "attributes" => {&#x000A;        "creator" => "spox"&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}</pre>
+          </p>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/bomb.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>No one cares about Hashes</q>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/stack.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            AWS CloudFormation
+          </h2>
+        </hgroup>
+        <article>
+          <p>CFN: "Configuration Management & Cloud Orchestration"</p>
+          <ul class='build'>
+            <li>Templates to describe infrastructure</li>
+            <li>Limited but powerful number of "runtime" functions</li>
+            <li>Reliably reproducable infrastructure</li>
+            <li>The most amazing API</li>
+            <li>The worst interface in the world</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>"Let me show you awesome CFN!"</h2>
+        </hgroup>
+        <article class='smaller'>
+          <pre class='prettyprint auto-scroll' data-lang='JSON' data-scroll-duration='25000'>{&#x000A;  "AWSTemplateFormatVersion": "2010-09-09",&#x000A;  "Description": "AWS CloudFormation Sample Template Rails_Multi_AZ",&#x000A;  "Parameters": {&#x000A;    "KeyName": {&#x000A;      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instances",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "64",&#x000A;      "AllowedPattern": "[-_ a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "can contain only alphanumeric characters, spaces, dashes and underscores."&#x000A;    },&#x000A;    "DBName": {&#x000A;      "Default": "MyDatabase",&#x000A;      "Description": "MySQL database name",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "64",&#x000A;      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBUsername": {&#x000A;      "NoEcho": "true",&#x000A;      "Description": "Username for MySQL database access",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "16",&#x000A;      "AllowedPattern": "[a-zA-Z][a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must begin with a letter and contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBPassword": {&#x000A;      "NoEcho": "true",&#x000A;      "Description": "Password for MySQL database access",&#x000A;      "Type": "String",&#x000A;      "MinLength": "1",&#x000A;      "MaxLength": "41",&#x000A;      "AllowedPattern": "[a-zA-Z0-9]*",&#x000A;      "ConstraintDescription": "must contain only alphanumeric characters."&#x000A;    },&#x000A;    "DBAllocatedStorage": {&#x000A;      "Default": "5",&#x000A;      "Description": "The size of the database (Gb)",&#x000A;      "Type": "Number",&#x000A;      "MinValue": "5",&#x000A;      "MaxValue": "1024",&#x000A;      "ConstraintDescription": "must be between 5 and 1024Gb."&#x000A;    },&#x000A;    "DBInstanceClass": {&#x000A;      "Default": "db.m1.small",&#x000A;      "Description": "The database instance type",&#x000A;      "Type": "String",&#x000A;      "AllowedValues": [&#x000A;        "db.m1.small",&#x000A;        "db.m1.large",&#x000A;        "db.m1.xlarge",&#x000A;        "db.m2.xlarge",&#x000A;        "db.m2.2xlarge",&#x000A;        "db.m2.4xlarge"&#x000A;      ],&#x000A;      "ConstraintDescription": "must select a valid database instance type."&#x000A;    },&#x000A;    "MultiAZDatabase": {&#x000A;      "Default": "true",&#x000A;      "Description": "Create a multi-AZ MySQL Amazon RDS database instance",&#x000A;      "Type": "String",&#x000A;      "AllowedValues": [&#x000A;        "true",&#x000A;        "false"&#x000A;      ],&#x000A;      "ConstraintDescription": "must be either true or false."&#x000A;    },&#x000A;    "WebServerCapacity": {&#x000A;      "Default": "2",&#x000A;      "Description": "The initial number of WebServer instances",&#x000A;      "Type": "Number",&#x000A;      "MinValue": "1",&#x000A;      "MaxValue": "5",&#x000A;      "ConstraintDescription": "must be between 1 and 5 EC2 instances."&#x000A;    },&#x000A;    "InstanceType": {&#x000A;      "Description": "WebServer EC2 instance type",&#x000A;      "Type": "String",&#x000A;      "Default": "m1.small",&#x000A;      "AllowedValues": [&#x000A;        "t1.micro",&#x000A;        "m1.small",&#x000A;        "m1.medium",&#x000A;        "m1.large",&#x000A;        "m1.xlarge",&#x000A;        "m2.xlarge",&#x000A;        "m2.2xlarge",&#x000A;        "m2.4xlarge",&#x000A;        "m3.xlarge",&#x000A;        "m3.2xlarge",&#x000A;        "c1.medium",&#x000A;        "c1.xlarge",&#x000A;        "cc1.4xlarge",&#x000A;        "cc2.8xlarge",&#x000A;        "cg1.4xlarge"&#x000A;      ],&#x000A;      "ConstraintDescription": "must be a valid EC2 instance type."&#x000A;    },&#x000A;    "SSHLocation": {&#x000A;      "Description": " The IP address range that can be used to SSH to the EC2 instances",&#x000A;      "Type": "String",&#x000A;      "MinLength": "9",&#x000A;      "MaxLength": "18",&#x000A;      "Default": "0.0.0.0/0",&#x000A;      "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",&#x000A;      "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."&#x000A;    }&#x000A;  },&#x000A;  "Mappings": {&#x000A;    "AWSInstanceType2Arch": {&#x000A;      "t1.micro": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.small": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.medium": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.large": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m1.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.2xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m2.4xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m3.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "m3.2xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "c1.medium": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "c1.xlarge": {&#x000A;        "Arch": "64"&#x000A;      },&#x000A;      "cc1.4xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      },&#x000A;      "cc2.8xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      },&#x000A;      "cg1.4xlarge": {&#x000A;        "Arch": "64HVM"&#x000A;      }&#x000A;    },&#x000A;    "AWSRegionArch2AMI": {&#x000A;      "us-east-1": {&#x000A;        "32": "ami-31814f58",&#x000A;        "64": "ami-1b814f72",&#x000A;        "64HVM": "ami-0da96764"&#x000A;      },&#x000A;      "us-west-2": {&#x000A;        "32": "ami-38fe7308",&#x000A;        "64": "ami-30fe7300",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "us-west-1": {&#x000A;        "32": "ami-11d68a54",&#x000A;        "64": "ami-1bd68a5e",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "eu-west-1": {&#x000A;        "32": "ami-973b06e3",&#x000A;        "64": "ami-953b06e1",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-southeast-1": {&#x000A;        "32": "ami-b4b0cae6",&#x000A;        "64": "ami-beb0caec",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-southeast-2": {&#x000A;        "32": "ami-b3990e89",&#x000A;        "64": "ami-bd990e87",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "ap-northeast-1": {&#x000A;        "32": "ami-0644f007",&#x000A;        "64": "ami-0a44f00b",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      },&#x000A;      "sa-east-1": {&#x000A;        "32": "ami-3e3be423",&#x000A;        "64": "ami-3c3be421",&#x000A;        "64HVM": "NOT_YET_SUPPORTED"&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Resources": {&#x000A;    "ElasticLoadBalancer": {&#x000A;      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",&#x000A;      "Metadata": {&#x000A;        "Comment": "Configure the Load Balancer with a simple health check and cookie-based stickiness"&#x000A;      },&#x000A;      "Properties": {&#x000A;        "AvailabilityZones": {&#x000A;          "Fn::GetAZs": ""&#x000A;        },&#x000A;        "LBCookieStickinessPolicy": [&#x000A;          {&#x000A;            "PolicyName": "CookieBasedPolicy",&#x000A;            "CookieExpirationPeriod": "30"&#x000A;          }&#x000A;        ],&#x000A;        "Listeners": [&#x000A;          {&#x000A;            "LoadBalancerPort": "80",&#x000A;            "InstancePort": "3000",&#x000A;            "Protocol": "HTTP",&#x000A;            "PolicyNames": [&#x000A;              "CookieBasedPolicy"&#x000A;            ]&#x000A;          }&#x000A;        ],&#x000A;        "HealthCheck": {&#x000A;          "Target": "HTTP:3000/",&#x000A;          "HealthyThreshold": "2",&#x000A;          "UnhealthyThreshold": "5",&#x000A;          "Interval": "10",&#x000A;          "Timeout": "5"&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WebServerGroup": {&#x000A;      "Type": "AWS::AutoScaling::AutoScalingGroup",&#x000A;      "Properties": {&#x000A;        "AvailabilityZones": {&#x000A;          "Fn::GetAZs": ""&#x000A;        },&#x000A;        "LaunchConfigurationName": {&#x000A;          "Ref": "LaunchConfig"&#x000A;        },&#x000A;        "MinSize": "1",&#x000A;        "MaxSize": "5",&#x000A;        "DesiredCapacity": {&#x000A;          "Ref": "WebServerCapacity"&#x000A;        },&#x000A;        "LoadBalancerNames": [&#x000A;          {&#x000A;            "Ref": "ElasticLoadBalancer"&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    "LaunchConfig": {&#x000A;      "Type": "AWS::AutoScaling::LaunchConfiguration",&#x000A;      "Metadata": {&#x000A;        "Comment1": "Configure the bootstrap helpers to install the Rails",&#x000A;        "Comment2": "The application is downloaded from the CloudFormationRailsSample.zip file",&#x000A;        "AWS::CloudFormation::Init": {&#x000A;          "config": {&#x000A;            "packages": {&#x000A;              "yum": {&#x000A;                "gcc-c++": [ ],&#x000A;                "make": [ ],&#x000A;                "ruby-devel": [ ],&#x000A;                "rubygems": [ ],&#x000A;                "mysql": [ ],&#x000A;                "mysql-devel": [ ],&#x000A;                "mysql-libs": [ ]&#x000A;              },&#x000A;              "rubygems": {&#x000A;                "rack": [&#x000A;                  "1.3.6"&#x000A;                ],&#x000A;                "execjs": [ ],&#x000A;                "therubyracer": [ ],&#x000A;                "rails": [ "3.2.14" ]&#x000A;              }&#x000A;            },&#x000A;            "sources": {&#x000A;              "/home/ec2-user/sample": "https://s3.amazonaws.com/cloudformation-examples/CloudFormationRailsSample.zip"&#x000A;            },&#x000A;            "files": {&#x000A;              "/home/ec2-user/sample/config/database.yml": {&#x000A;                "content": {&#x000A;                  "Fn::Join": [&#x000A;                    "",&#x000A;                    [&#x000A;                      "development:\n",&#x000A;                      " adapter: mysql2\n",&#x000A;                      " encoding: utf8\n",&#x000A;                      " reconnect: false\n",&#x000A;                      " pool: 5\n",&#x000A;                      " database: ",&#x000A;                      {&#x000A;                        "Ref": "DBName"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " username: ",&#x000A;                      {&#x000A;                        "Ref": "DBUsername"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " password: ",&#x000A;                      {&#x000A;                        "Ref": "DBPassword"&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " host: ",&#x000A;                      {&#x000A;                        "Fn::GetAtt": [&#x000A;                          "MySQLDatabase",&#x000A;                          "Endpoint.Address"&#x000A;                        ]&#x000A;                      },&#x000A;                      "\n",&#x000A;                      " port: ",&#x000A;                      {&#x000A;                        "Fn::GetAtt": [&#x000A;                          "MySQLDatabase",&#x000A;                          "Endpoint.Port"&#x000A;                        ]&#x000A;                      },&#x000A;                      "\n"&#x000A;                    ]&#x000A;                  ]&#x000A;                },&#x000A;                "mode": "000644",&#x000A;                "owner": "root",&#x000A;                "group": "root"&#x000A;              }&#x000A;            }&#x000A;          }&#x000A;        }&#x000A;      },&#x000A;      "Properties": {&#x000A;        "ImageId": {&#x000A;          "Fn::FindInMap": [&#x000A;            "AWSRegionArch2AMI",&#x000A;            {&#x000A;              "Ref": "AWS::Region"&#x000A;            },&#x000A;            {&#x000A;              "Fn::FindInMap": [&#x000A;                "AWSInstanceType2Arch",&#x000A;                {&#x000A;                  "Ref": "InstanceType"&#x000A;                },&#x000A;                "Arch"&#x000A;              ]&#x000A;            }&#x000A;          ]&#x000A;        },&#x000A;        "InstanceType": {&#x000A;          "Ref": "InstanceType"&#x000A;        },&#x000A;        "SecurityGroups": [&#x000A;          {&#x000A;            "Ref": "WebServerSecurityGroup"&#x000A;          }&#x000A;        ],&#x000A;        "KeyName": {&#x000A;          "Ref": "KeyName"&#x000A;        },&#x000A;        "UserData": {&#x000A;          "Fn::Base64": {&#x000A;            "Fn::Join": [&#x000A;              "",&#x000A;              [&#x000A;                "#!/bin/bash -v\n",&#x000A;                "yum update -y aws-cfn-bootstrap\n",&#x000A;                "# Helper function\n",&#x000A;                "function error_exit\n",&#x000A;                "{\n",&#x000A;                " /opt/aws/bin/cfn-signal -e 1 -r \"$1\" '",&#x000A;                {&#x000A;                  "Ref": "WaitHandle"&#x000A;                },&#x000A;                "'\n",&#x000A;                " exit 1\n",&#x000A;                "}\n",&#x000A;                "# Install Rails packages\n",&#x000A;                "/opt/aws/bin/cfn-init -s ",&#x000A;                {&#x000A;                  "Ref": "AWS::StackId"&#x000A;                },&#x000A;                " -r LaunchConfig ",&#x000A;                " --region ",&#x000A;                {&#x000A;                  "Ref": "AWS::Region"&#x000A;                },&#x000A;                " || error_exit 'Failed to run cfn-init'\n",&#x000A;                "# Install anu other Gems, create the database and run a migration\n",&#x000A;                "cd /home/ec2-user/sample\n",&#x000A;                "bundle install || error_exit 'Failed to install bundle'\n",&#x000A;                "rake db:migrate || error_exit 'Failed to execute database migration'\n",&#x000A;                "# Startup the rails server\n",&#x000A;                "rails server -d\n",&#x000A;                "echo \"cd /home/ec2-user/sample\" >> /etc/rc.local\n",&#x000A;                "echo \"rails server -d\" >> /etc/rc.local\n",&#x000A;                "# All is well so signal success\n",&#x000A;                "/opt/aws/bin/cfn-signal -e 0 -r \"Rails application setup complete\" '",&#x000A;                {&#x000A;                  "Ref": "WaitHandle"&#x000A;                },&#x000A;                "'\n"&#x000A;              ]&#x000A;            ]&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WaitHandle": {&#x000A;      "Type": "AWS::CloudFormation::WaitConditionHandle"&#x000A;    },&#x000A;    "WaitCondition": {&#x000A;      "Type": "AWS::CloudFormation::WaitCondition",&#x000A;      "DependsOn": "WebServerGroup",&#x000A;      "Properties": {&#x000A;        "Handle": {&#x000A;          "Ref": "WaitHandle"&#x000A;        },&#x000A;        "Timeout": "1500",&#x000A;        "Count": {&#x000A;          "Ref": "WebServerCapacity"&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "WebServerSecurityGroup": {&#x000A;      "Type": "AWS::EC2::SecurityGroup",&#x000A;      "Properties": {&#x000A;        "GroupDescription": "Enable HTTP access via port 3000 locked down to the load balancer + SSH access",&#x000A;        "SecurityGroupIngress": [&#x000A;          {&#x000A;            "IpProtocol": "tcp",&#x000A;            "FromPort": "3000",&#x000A;            "ToPort": "3000",&#x000A;            "SourceSecurityGroupOwnerId": {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "SourceSecurityGroup.OwnerAlias"&#x000A;              ]&#x000A;            },&#x000A;            "SourceSecurityGroupName": {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "SourceSecurityGroup.GroupName"&#x000A;              ]&#x000A;            }&#x000A;          },&#x000A;          {&#x000A;            "IpProtocol": "tcp",&#x000A;            "FromPort": "22",&#x000A;            "ToPort": "22",&#x000A;            "CidrIp": {&#x000A;              "Ref": "SSHLocation"&#x000A;            }&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    "DBSecurityGroup": {&#x000A;      "Type": "AWS::RDS::DBSecurityGroup",&#x000A;      "Properties": {&#x000A;        "GroupDescription": "Grant database access to web server",&#x000A;        "DBSecurityGroupIngress": {&#x000A;          "EC2SecurityGroupName": {&#x000A;            "Ref": "WebServerSecurityGroup"&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    },&#x000A;    "MySQLDatabase": {&#x000A;      "Type": "AWS::RDS::DBInstance",&#x000A;      "Properties": {&#x000A;        "Engine": "MySQL",&#x000A;        "DBName": {&#x000A;          "Ref": "DBName"&#x000A;        },&#x000A;        "MultiAZ": {&#x000A;          "Ref": "MultiAZDatabase"&#x000A;        },&#x000A;        "MasterUsername": {&#x000A;          "Ref": "DBUsername"&#x000A;        },&#x000A;        "MasterUserPassword": {&#x000A;          "Ref": "DBPassword"&#x000A;        },&#x000A;        "DBInstanceClass": {&#x000A;          "Ref": "DBInstanceClass"&#x000A;        },&#x000A;        "DBSecurityGroups": [&#x000A;          {&#x000A;            "Ref": "DBSecurityGroup"&#x000A;          }&#x000A;        ],&#x000A;        "AllocatedStorage": {&#x000A;          "Ref": "DBAllocatedStorage"&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Outputs": {&#x000A;    "WebsiteURL": {&#x000A;      "Value": {&#x000A;        "Fn::Join": [&#x000A;          "",&#x000A;          [&#x000A;            "http://",&#x000A;            {&#x000A;              "Fn::GetAtt": [&#x000A;                "ElasticLoadBalancer",&#x000A;                "DNSName"&#x000A;              ]&#x000A;            }&#x000A;          ]&#x000A;        ]&#x000A;      },&#x000A;      "Description": "URL for newly created Rails application"&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/goggles.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color: #aaa;'></slide>
+      
+      <slide>
+        <hgroup>
+          <h2>SFN for Awesome CFN</h2>
+        </hgroup>
+        <article>
+          <p>Write Ruby, get JSON</p>
+          <ul class='build'>
+            <li>Hey look, Hashes!</li>
+            <li>SparkleFormation to build templates</li>
+            <li>sfn tool to leverage SparkleFormation</li>
+            <li>Includes features that will blow your mind</li>
+            <ul>
+              <li>(covered in lighting talk)</li>
+            </ul>
+            <li class='red'>Is not a serialization format</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar top right'>
+          <img src='images/upload.png'>
+        </aside>
+        <hgroup>
+          <h2>Now I'm Infrastructure as Coding!</h2>
+        </hgroup>
+        <article>
+          <p>Well, no, not really</p>
+          <ul class='build'>
+            <li>My unicorn requires:</li>
+            <ul>
+              <li>Push button</li>
+              <li>Receive infrastructure</li>
+            </ul>
+            <li>What I have:</li>
+            <ul>
+              <li>Configuration as code</li>
+              <li>Infrastructure as code</li>
+              <ul>
+                <li>(but not my unicorn!)</li>
+              </ul>
+            </ul>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/navigation.png'>
+        </aside>
+        <hgroup>
+          <h2>Link the Code to the Infra</h2>
+        </hgroup>
+        <article>
+          <p>
+            Lets use
+            <strike>Jenkins</strike>
+            Jackal!
+          </p>
+          <p>
+            <b>Jackal:</b>
+            Framework for creating simple services
+          </p>
+          <div style='margin-left: 90px; margin-top: 90px; margin-bottom: 40px;'>
+            <q>It's a series of tubes.</q>
+            <div class='author'>Ted Stevens</div>
+          </div>
+          <p style='margin-top: 200px; font-size: smaller;'>
+            (Why jackal? Come to the workshop and find out!)
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/taskmanager.png'>
+        </aside>
+        <hgroup>
+          <h2>All the Parts</h2>
+        </hgroup>
+        <article>
+          <p>
+            Tools configured:
+            <ul class='build'>
+              <ul>
+                <li>
+                  <b>Chef</b>
+                  to code the configuration
+                </li>
+                <li>
+                  <b>SparkleFormation</b>
+                  to code the infrastructure
+                </li>
+                <li>
+                  <b>GitHub</b>
+                  to store the code
+                </li>
+                <li>
+                  <b>AWS CFN</b>
+                  to provide the infrastructure
+                </li>
+                <li>
+                  <b>Jackal</b>
+                  to glue GitHub and AWS together
+                </li>
+              </ul>
+              <li class='green'>Push tag, receive infrastructure</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar top right'>
+          <img src='images/art.png'>
+        </aside>
+        <hgroup>
+          <h2>K.I.S.S.</h2>
+        </hgroup>
+        <article>
+          <p>
+            Collection of independent tools
+            <ul>
+              <li>Disperate tools</li>
+              <li>Each performing a single job</li>
+              <li>Linked together for complex task</li>
+              <li>Easily swappable</li>
+              <li>Easily reconfigurable</li>
+            </ul>
+          </p>
+          <div class='inline-quote centered'>
+            <q>
+              Simplicity is prerequisite for reliability.
+            </q>
+            <div class='author'>Edsger W. Dijkstra</div>
+          </div>
+        </article>
+      </slide>
+      
+      <slide>
+        <article>
+          <center>
+            <video class='autoplay expand' data-speed='5.0' height='300' src='images/horse.mp4' width='400'></video>
+          </center>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/omg.png); background-repeat: norepeat; background-position: center; background-size: cover;'></slide>
+      
+      <slide class='seque quote dark nobackground'>
+        <article class='flexbox vleft auto-fadein'>
+          <q>
+            A Chinese prose writer has observed that the unicorn, because of its own anomaly, will pass unnoticed. Our eyes see what they are accustomed to seeing.
+          </q>
+          <div class='author'>Jorge Luis Borges</div>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/computer.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            Not Really so Magical
+          </h2>
+        </hgroup>
+        <article>
+          <p>Magic, perhaps, in its simplicity</p>
+          <ul>
+            <li>Used existing tools</li>
+            <li>Provided better interfaces</li>
+            <li>Redefined existing workflows</li>
+            <li>Adjusted view for new perspective</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Looks Like a Unicorn
+          </h2>
+        </hgroup>
+        <article>
+          <center>
+            <img src='images/horse.jpg'>
+          </center>
+        </article>
+      </slide>
+      
+      <slide class='dark' style='color: white;'>
+        <aside class='gdbar right'>
+          <img src='images/booklet.png'>
+        </aside>
+        <hgroup>
+          <h2 class='white'>Informations</h2>
+        </hgroup>
+        <article>
+          <div style='margin-top: 90px; margin-left: 40px;'>
+            <p>
+              More Information:
+              <ul>
+                <li>SparkleFormation lightning talk</li>
+                <li>SparkleFormation workshop</li>
+                <li>Jackal workshop</li>
+                <li>Accost me in the hallway</li>
+              </ul>
+            </p>
+            <p>
+              Tools:
+              <ul>
+                <li>
+                  sfn
+                  <span style='font-size: 70%'>http://github.com/sparkleformation/sfn</span>
+                </li>
+                <li>
+                  SparkleFormation
+                  <span style='font-size: 70%'>http://github.com/sparkleformation/sparkle_formation</span>
+                </li>
+                <li>
+                  Jackal
+                  <span style='font-size: 70%'>http://github.com/carnivore-rb/jackal</span>
+                </li>
+              </ul>
+            </p>
+          </div>
+        </article>
+      </slide>
+      <slide class='thank-you-slide segue nobackground'>
+        <aside class='gdbar right'>
+          <img src='images/hw_logo_72.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h2>Thank you!</h2>
+        </article>
+        <p class='auto-fadein' data-config-contact></p>
+      </slide>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/hw_logo_b_bottom_512.png'>
+          </span>
+        </article>
+      </slide>
+      <slide class='backdrop'></slide>
+    </slides>
+  </body>
+  <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</html>
