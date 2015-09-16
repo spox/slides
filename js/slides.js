@@ -85,6 +85,9 @@ $('document').ready(function(){
       if(video.hasClass('expand')){
         video.addClass('filled');
       }
+      if(video.attr('data-speed')){
+        vid.playbackRate = video.attr('data-speed');
+      }
       if(video.hasClass('autoplay')){
         vid.play();
       }
