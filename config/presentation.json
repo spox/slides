@@ -7,7 +7,7 @@
         "enableSlideAreas": true,
         "enableTouch": false,
         "favIcon": "images/favicon.jpg",
-        "incrementEvery": 15,
+        "incrementEvery": false,
         "incrementLoop": false,
         "fonts": [
             "Open Sans:regular,semibold,italic,italicsemibold",

@@ -1,19 +1,209 @@
 %slide
+  %aside.gdbar.right.bottom
+    %img{:src => 'images/sparkleformation.png'}
   %hgroup
-    %h2 High level description
+    %h2 SparkleFormation Library
   %article
+    %p
+      Ruby orchestration templating library
+      %ul
+        %li Reusability framework
+        %li Programmatic generation
+        %li Loose implementation
 
 %slide
   %hgroup
-    %h2 Show CFN template
+    %h2 To review, this is CFN
+  %article
+    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby'}
+      :preserve
+        {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "My Stack Description",
+          "Parameters": {
+            "Creator": {
+              "Default": "spox",
+              "Description": "Creator of stack",
+              "Type": "String"
+            },
+            "ImageId": {
+              "Default": "ami-ad42009d",
+              "AllowedValues": [
+                "ami-ad42009d",
+                "ami-c7d092f7"
+              ],
+              "Description": "AMI Image ID",
+              "Type": "String"
+            },
+            "InstanceType": {
+              "Default": "m1.small",
+              "Description": "Size of instance",
+              "Type": "String"
+            },
+            "KeyName": {
+              "Default": "sparkle-key",
+              "Description": "EC2 SSH key name",
+              "Type": "String"
+            }
+          },
+          "Resources": {
+            "StackIamUser": {
+              "Type": "AWS::IAM::User",
+              "Properties": {
+                "Path": "/",
+                "Policies": [
+                  {
+                    "PolicyName": "stack_description_access",
+                    "PolicyDocument": {
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": "cloudformation:DescribeStackResource",
+                          "Resource": "*"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "StackIamAccessKey": {
+              "Type": "AWS::IAM::AccessKey",
+              "Properties": {
+                "UserName": {
+                  "Ref": "StackIamUser"
+                },
+                "Status": "Active"
+              }
+            },
+            "SparkleSecurityGroup": {
+              "Type": "AWS::EC2::SecurityGroup",
+              "Properties": {
+                "GroupDescription": "Instance security group (SparkleFormation Example)",
+                "SecurityGroupIngress": [
+                  {
+                    "IpProtocol": "tcp",
+                    "FromPort": "22",
+                    "ToPort": "22",
+                    "CidrIp": "0.0.0.0/0"
+                  },
+                  {
+                    "IpProtocol": "tcp",
+                    "FromPort": "80",
+                    "ToPort": "80",
+                    "CidrIp": "0.0.0.0/0"
+                  }
+                ]
+              }
+            },
+            "SparkleEc2Node": {
+              "Type": "AWS::EC2::Instance",
+              "Properties": {
+                "ImageId": {
+                  "Ref": "ImageId"
+                },
+                "InstanceType": {
+                  "Ref": "InstanceType"
+                },
+                "KeyName": {
+                  "Ref": "KeyName"
+                },
+                "SecurityGroups": [
+                  {
+                    "Ref": "SparkleSecurityGroup"
+                  }
+                ],
+                "UserData": {
+                  "Fn::Base64": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "#!/bin/bash\n",
+                        "yum -q -y install python-setuptools nginx\n",
+                        "apt-get -q -y install python-setuptools nginx\n",
+                        "easy_install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
+                        "/usr/local/bin/cfn-init -v --region ",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        " -s ",
+                        {
+                          "Ref": "AWS::StackName"
+                        },
+                        " -r SparkleEc2Node --access-key ",
+                        {
+                          "Ref": "StackIamAccessKey"
+                        },
+                        " --secret-key ",
+                        {
+                          "Fn::GetAtt": [
+                            "StackIamAccessKey",
+                            "SecretAccessKey"
+                          ]
+                        },
+                        "\n"
+                      ]
+                    ]
+                  }
+                }
+              },
+              "Metadata": {
+                "AWS::CloudFormation::Init": {
+                  "config": {
+                    "services": {
+                      "sysvinit": {
+                        "nginx": {
+                          "enabled": true,
+                          "ensureRunning": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Outputs": {
+            "StackCreator": {
+              "Description": "Stack creator",
+              "Value": {
+                "Ref": "Creator"
+              }
+            },
+            "SparkleEc2NodeAddress": {
+              "Description": "Public address of sparkle node",
+              "Value": {
+                "Fn::GetAtt": [
+                  "SparkleEc2Node",
+                  "PublicIp"
+                ]
+              }
+            }
+          }
+        }
 
 %slide
   %hgroup
-    %h2 Describe the framework
+    %h2 Breaking down the JSON
+  %article
+    %p
+      SparkleFormation provides a set of reusable primatives
+      %ul
+        %li Components - Static inclusions
+        %li Dynamics - Dynamic inclusions
+        %li Registries - Reusable data
+        %li Templates - Final product
 
 %slide
   %hgroup
-    %h2 Describe SFN for dealing with API
+    %h2 SparkleFormation CLI: sfn
+  %article
+    %p
+      sfn is a client application for interacting with orchestration APIs
+      %ul
+        %li Handles all the basic CRUD stuff
+        %li Allows for deep resource inspection
+        %li Provides other handy features
 
 %slide
   %hgroup
@@ -21,23 +211,59 @@
 
 %slide
   %hgroup
-    %h2 List new features of 1.0
+    %h2 SparkleFormation and sfn One Point Oh
+  %article
+    %p
+      Lots of updates including code refactor and new features
+      %ul
+        %li New deep nesting implementation
+        %li Support for inline stack policy generation
+        %li Custom command callback support
+        %ul
+          %li Builtin stack policy callback
+        %li Better nesting support
 
 %slide
   %hgroup
-    %h2 Start with the unimpressive stuff (callbacks) - Show how they are applied
+    %h2 Callbacks (sfn)
+  %article
+    %p
+      Command callbacks allow wrapping requests with custom functionality
+      %ul
+        %li Triggered before / after API requests
+        %li Stack policy support (builtin)
+        %li Automatic resource tagging
+        %li Custom event generation
 
 %slide
   %hgroup
-    %h2 Explain policy files, how you can inline them
+    %h2 Stack Policies (protect your resources)
+  %article
+    %code Template with policy stuff
 
 %slide
   %hgroup
-    %h2 Stack nesting (the old way)
+    %h2 Shallow Nesting (old school)
+  %article
+    %p
+      Shallow nesting is the original nesting style (now deprecated)
+      %ul
+        %li Supported single depth nesting
+        %li Auto bubbles parameters to root
+        %li Auto maps outputs to parameters
+        %li Hits resource limits faster than a thing that's fast
 
 %slide
   %hgroup
-    %h2 Stack nesting (the new way)
+    %h2 Deep Nesting
+  %article
+    %p
+      Deep nesting is now the default nesting style
+      %ul
+        %li Supports infinite nesting depths (stacks for ever!)
+        %li Removes parameter bubbling to root stack
+        %li Adds output bubbling and parameter injection
+        %li Even includes detection of parameter modifications
 
 %slide
   %hgroup
@@ -45,11 +271,27 @@
 
 %slide
   %hgroup
-    %h2 Explanation of _why_ it's so important
+    %h2 Who cares?
+  %article
+    %p
+      Well, me. But you should too!
+      %ul
+        %li Removes resource limit restrictions
+        %li Use stacks for logical organization
+        %li Build organizational trees of stacks
+        %li Single point of interaction
+
 
 %slide
   %hgroup
-    %h2 Jackal CFN for jackal stacks
+    %h2 Jackal Stacks
+  %article
+    %p
+      Jackal based custom resource for creating stacks
+      %ul
+        %li Uses miasma for orchestration API interactions
+        %li Provides full life cycle for stack
+        %li Interface for multi-region / multi-cloud
 
 %slide
   %hgroup
@@ -62,15 +304,47 @@
 
 %slide
   %hgroup
-    %h2 Show the Ruby that created it
+    %h2 Created via Code
+  %article
+    %p
+      A single template builds all the things
+    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:infrastructure) do
+          nest!(:vpc)
+          nest!(:vpc, :other_west) do
+            type 'Custom::JackalStack'
+            properties do
+              location 'other_west'
+              service_token "arn:aws:sns:us-west-2:921689585014:custom_resource"
+            end
+          end
+
+          nest!(:single_node) do
+            type 'Custom::JackalStack'
+            properties do
+              location 'my_cloud'
+              service_token "arn:aws:sns:us-west-2:921689585014:custom_resource"
+            end
+          end
+
+          outputs do
+            local_vpc_id.value stack_output!(:vpc, :my_vpc_id)
+            other_west_vpc_id.value stack_output!(:other_west, :my_vpc_id)
+            my_cloud_address.value stack_output!(:single_node, :eucalyptus_address)
+          end
+        end
 
 %slide
   %hgroup
-    %h2 Sunshine and rainbows
+    %h2 it's happening
 
 %slide
   %hgroup
-    %h2 Still moving forward
+    %h2 Infrastructure as Code (Resources)
+  %p
+
+
 
 %slide{:class => 'segue dark quote nobackground'}
   %aside{:class => 'gdbar bottom right'}
