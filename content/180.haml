@@ -1,1 +1,16 @@
-%slide{:class => 'fill nobackground', :style => 'background-image: url(/images/hashes.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color:#888;'}
+%slide
+  %hgroup
+    %h2
+      Framework - Template
+  %article
+    %p Use new framework items for template
+    %p.blue3 The #load helper method injects components
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:tester).load(:base).overrides do
+          dynamic!(:node, :first)
+          # Now reusable
+          dynamic!(:node, :second)
+        end

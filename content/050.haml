@@ -1,1 +1,30 @@
-%slide{:class => 'fill nobackground', :style => 'background-image: url(/images/infra.png); background-repeat: norepeat; background-position: center; background-size: contain;'}
+%slide
+  %hgroup
+    %h2 Simple JSON template
+  %article
+    %pre.prettyprint.auto-scroll{'data-lang' => 'json', :style => 'height: 70%'}
+      :preserve
+        {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "My SparkleFormation Stack",
+          "Resources": {
+            "MyEc2Instance": {
+              "Type": "AWS::EC2::Instance",
+              "Properties": {
+                "ImageId": "ami-c0e78ba0",
+                "InstanceType": "m1.small",
+                "KeyName": "demo-infra"
+              }
+            }
+          },
+          "Outputs": {
+            "MyInstanceAddress": {
+              "Value": {
+                "Fn::GetAtt": [
+                  "MyEc2Instance",
+                  "PublicIp"
+                ]
+              }
+            }
+          }
+        }

@@ -1,1 +1,15 @@
-%slide{:class => 'fill nobackground', :style => 'background-image: url(/images/rage.png); background-repeat: norepeat; background-position: center; background-size: contain;'}
+%slide
+  %hgroup
+    %h2
+      Framework - Components
+  %article
+    %p Identify single use information
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.component(:base) do
+          AWSTemplateFormatVersion '2010-09-09'
+          description 'My SparkleFormation Stack'
+          parameters do
+            stack_creator.type 'String'
+          end
+        end

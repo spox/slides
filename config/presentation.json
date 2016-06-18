@@ -1,7 +1,7 @@
 {
     "settings": {
-        "title": "Infrastructure as Code",
-        "subtitle": "It's a Horse, not a Unicorn",
+        "title": "SparkleFormation",
+        "subtitle": "Defining Infrastructure as Code",
         "useBuilds": true,
         "usePrettify": true,
         "enableSlideAreas": true,
@@ -25,7 +25,7 @@
         "template": "base",
         "theme": "default",
         "bookend_slide_image": "hw_logo_b_bottom_512.png",
-        "title_segue_image": "cloud.png",
+        "title_segue_image": "sparkle-logo.png",
         "thank_you_segue_image": "hw_logo_72.png",
         "default_segue_image": null,
         "thank_you_title": null,

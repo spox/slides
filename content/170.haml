@@ -1,16 +1,27 @@
 %slide
-  %aside{:class => 'gdbar top right'}
-    %img{:src => 'images/flame.png'}
   %hgroup
-    %h2 Vagabond Origin
+    %h2
+      Framework - Dynamics
   %article
-    %p Born from rage and frustration
-    %ul.build
-      %ul
-        %li Handful of scripts + LXC
-        %li DSL inspired from previous DRY
-        %li Large local cluster builds fast and reliable
-      %ul
-        %li Seeing a pattern in description
-        %li Implemented helpers for pattern
-        %li Turtles all the way down
+    %p Identify multiple use information
+    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
+      :preserve
+        SparkleFormation.dynamic(:node) do |n_name, n_config={}|
+          parameters do
+            set!("\#{n_name}_key_name").type 'String'
+            set!("\#{n_name}_ami_id").type 'String'
+          end
+          instance_resource = dynamic!(:ec2_instance, n_name) do
+            properties do
+              image_id ref!("\#{n_name}_ami_id".to_sym)
+              key_name ref!("\#{n_name}_key_name".to_sym)
+              instance_type 'm1.small'
+            end
+          end
+          outputs do
+            set!("\#{n_name}_instance_address").value attr!(
+              "\#{n_name}_ec2_instance".to_sym, :public_ip
+            )
+          end
+          instance_resource
+        end

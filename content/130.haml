@@ -1,15 +1,24 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/spiceweasel.png'}
   %hgroup
     %h2
-      Spiceweasel: More Than Seasoning
+      DSL Features - Hierarchy Helpers
   %article
-    %p Using Matt Ray's Spiceweasel tool for building clusters
-    %ul
-      %li Could mostly build clusters
-      %ul
-        %li Serialized configuration meant copies
-        %li Needed more command support
-      %li Added required command and config support
-      %li Successful clusters with single command*
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          parameters.key_name.type 'String'
+          resources.my_instance do
+            type 'AWS::EC2::Instance'
+            properties do
+              key_name ref!(:key_name)
+              tags array!(
+                ->{
+                  name 'KeyName'
+                  # Parent from current context
+                  value parent!.key_name
+                  # Template root
+                  value root!.resources.my_instance.properties.key_name
+                }
+              )
+            end
+          end

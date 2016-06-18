@@ -1,6 +1,16 @@
-%slide{:class => 'segue dark quote nobackground'}
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/globe.png'}
-  %article{:class => 'flexbox vleft auto-fadein'}
-    %q ... a true creator is necessity, which is the mother of our invention.
-    %div.author Plato, The Republic
+%slide
+  %hgroup
+    %h2
+      DSL Features - Deletion
+  %article
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          parameters do
+            stack_creator.type 'String'
+            instance_size.type 'String'
+          end
+
+          ...
+
+          parameters.delete!(:stack_creator)

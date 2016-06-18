@@ -1,17 +1,23 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/typing.png'}
   %hgroup
-    %h2 OMG I'm Infrastructure as Coding!
+    %h2
+      DSL Features - Invalid syntax / Composite keys
   %article
-    %p Found my way to greener grass.
-    %ul
-      %li Digging into chef code base
-      %li Started submitting PRs for new features
-      %ul
-        %li Dynamic runlist modifications
-        %li Process forking
-        %li Lazy attributes
-      %li Writing cookbooks for all the things
-      %ul
-        %b This is the future people!
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          prefix = '00'
+          parameters('01_creator') do
+            type 'String'
+          end
+          parameters("\#{prefix}_info") do
+            type 'String'
+          end
+        end
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          prefix = '00'
+          parameters.set!('01_creator').type 'String'
+          parameters.set!("\#{prefix}_info").type 'String'
+        end

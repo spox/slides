@@ -1,15 +1,18 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/ruby.png'}
   %hgroup
-    %h2
-      YARJ
+    %h2 SparkleFormation template
   %article
-    %p Yet Another Rails Job
-    %ul.build
-      %li Really like Ruby
-      %li No operations team
-      %li Environment evolved
-      %li Don't touch anything
-      %li Search and pray
-      %li Any problem == panic
+    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
+      :preserve
+        SparkleFormation.new do
+          AWSTemplateFormatVersion '2010-09-09'
+          description 'My SparkleFormation Stack'
+          dynamic!(:ec2_instance, :my) do
+            properties do
+              image_id 'ami-c0e78ba0'
+              instance_type 'm1.small'
+              key_name 'demo-infra'
+            end
+          end
+          outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)
+        end

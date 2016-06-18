@@ -1,18 +1,24 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/rocket.png'}
   %hgroup
     %h2
-      The `If` Too Big
+      Template Breakdown - Finding patterns
   %article
-    %p
-      Functional and solved the immediate problem. Some
-      gripes persisted:
-    %ul
-      %li Heavy SSH usage
-      %li DRY but lots of shell
-      %li Walking access point
-    %p Straw that broke the camel's back:
-    %ul.build
-      %li.red
-        %b Intermittent network failures
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          AWSTemplateFormatVersion '2010-09-09'
+          description 'My SparkleFormation Stack'
+          parameters do
+            stack_creator.type 'String'
+            key_name.type 'String'
+            ami_id.type 'String'
+          end
+          dynamic!(:ec2_instance, :my) do
+            properties do
+              image_id ref!(:ami_id)
+              key_name ref!(:key_name)
+              instance_type 'm1.small'
+            end
+          end
+          outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)
+        end

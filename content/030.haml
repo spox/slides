@@ -1,14 +1,20 @@
 %slide
   %hgroup
-    %h2 "Infrastructure as Code" Unicorn
+    %h2 AttributeStruct Library
   %article
-    %p What is Infrastructure as Code
-    %ul
-      %li No correct answer
-      %li Many correct answers
-      %li Lots of people searching for different things
-      %ul.build
-        %li Multiple classifications
-        %li All paths lead forward
-    %ul.build
-      %li My unicorn
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        AttributeStruct.new do
+          package 'nginx' do
+            action :install
+          end
+        end
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        {
+          "package" => {
+            "nginx" => {
+              "action" => "install"
+            }
+          }
+        }

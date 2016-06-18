@@ -1,19 +1,20 @@
 %slide
-  %aside{:class => 'gdbar top right'}
-    %img{:src => 'images/art.png'}
   %hgroup
-    %h2 K.I.S.S.
+    %h2 sfn commands
   %article
-    %p
-      Collection of independent tools
-      %ul
-        %li Disperate tools
-        %li Each performing a single job
-        %li Linked together for complex task
-        %li Easily swappable
-        %li Easily reconfigurable
-
-    .inline-quote.centered
-      %q
-        Simplicity is prerequisite for reliability.
-      .author Edsger W. Dijkstra
+    %p Template
+    %pre.prettyprint{'data-lang' => ''}
+      :preserve
+        $ sfn validate
+    %p Life cycle
+    %pre.prettyprint{'data-lang' => ''}
+      :preserve
+        $ sfn create
+        $ sfn update
+        $ sfn destroy
+    %p Inspection
+    %pre.prettyprint{'data-lang' => ''}
+      :preserve
+        $ sfn describe
+        $ sfn inspect
+        $ sfn events

@@ -1,32 +1,18 @@
 %slide
-  %article.smaller
-    %p
-      From the DSL:
-      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 40%'}
-        :preserve
-          Configuration.new do
-            defaults do
-              template 'ubuntu_1404'
-              attributes.creator ENV['USER']
-            end
-            nodes do
-              database.run_list ['role[database]']
-            end
-          end
-    %p
-      Into primatives:
-      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 40%'}
-        :preserve
-          {
-            "nodes" => {
-              "database" => {
-                "template" => "ubuntu_1404",
-                "run_list" => [
-                  "role[database]"
-                ],
-                "attributes" => {
-                  "creator" => "spox"
-                }
-              }
-            }
-          }
+  %hgroup
+    %h2
+      SparkleFormation Helper Methods
+  %article
+    %p Generating common data structures
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        ref!(:stack_creator)
+          # => {"Ref": "StackCreator"}
+        attr!(:node, :public_ip)
+          # => {"Fn::Att": ["Node", "PublicIp"]}
+        stack_id!
+          # => {"Ref": "AWS::StackId"}
+        account_id!
+          # => {"Ref": "AWS::AccountId"}

@@ -1,14 +1,17 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/stack.png'}
   %hgroup
     %h2
-      AWS CloudFormation
+      Template Modifications
   %article
-    %p CFN: "Configuration Management & Cloud Orchestration"
-    %ul.build
-      %li Templates to describe infrastructure
-      %li Limited but powerful number of "runtime" functions
-      %li Reliably reproducable infrastructure
-      %li The most amazing API
-      %li The worst interface in the world
+    %p Modify generic data
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:tester).load(:base).overrides do
+          dynamic!(:node, :first) do
+            properties.key_name 'my-custom-key'
+          end
+          dynamic!(:node, :second)
+          outputs.delete!(:second_instance_address)
+        end

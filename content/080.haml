@@ -1,1 +1,20 @@
-%slide{:class => 'fill nobackground', :style => 'background-image: url(/images/cat.gif); background-repeat: norepeat; background-position: center; background-size: contain;'}
+%slide
+  %hgroup
+    %h2
+      DSL Features - Arrays
+  %article
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new do
+          resources.my_ec2_instance.properties do
+            # With DSL support via Proc
+            tags array!(
+              ->{
+                name 'Creator'
+                value ref!(:stack_creator)
+              }
+            )
+            # Without DSL support
+            tags [{'Name' => 'Creator', 'Value' => ref!(:stack_creator)}]
+          end
+        end

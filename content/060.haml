@@ -1,6 +1,23 @@
-%slide{:class => 'segue dark quote nobackground'}
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/globe.png'}
-  %article{:class => 'flexbox vleft auto-fadein'}
-    %q If the road is easy, you're likely going the wrong way.
-    %div.author Terry Goodkind
+%slide
+  %hgroup
+    %h2 AttributeStruct template
+  %article
+    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
+      :preserve
+        AttributeStruct.camel_keys = true
+
+        AttributeStruct.new do
+          AWSTemplateFormatVersion '2010-09-09'
+          description 'My SparkleFormation Stack'
+          resources.my_ec2_instance do
+            type 'AWS::EC2::Instance'
+            properties do
+              image_id 'ami-c0e78ba0'
+              instance_type 'm1.small'
+              key_name 'demo-infra'
+            end
+          end
+          outputs.my_instance_address.value.set!(
+            'Fn::GetAtt', ['MyEc2Instance', 'PublicIp']
+          )
+        end
