@@ -1,0 +1,52 @@
+%slide
+  %hgroup
+    %h2 Azure Resource Manager
+  %article{:style => 'float:right; width: 45%'}
+    %pre.prettyprint{'data-lang' => 'json', :style => 'height: 70%; padding-left: 5px; font-size: 60%'}
+      :preserve
+        {
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2016-01-01",
+              "location": "[resourceGroup().location]",
+              "name": "[parameters('someName')]"
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "dependsOn": [
+                "[parameters('someName')]"
+              ],
+              "apiVersion": "2016-01-01",
+              "location": "[resourceGroup().location]",
+              "name": "concatDependsOnStorageAccounts"
+            },
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "dependsOn": [
+                "[parameters('someName')]"
+              ],
+              "apiVersion": "2016-01-01",
+              "location": "[resourceGroup().location]",
+              "name": "referenceNameStorageAccounts"
+            }
+          ]
+        }
+  %article{:style => 'width: 45%;'}
+    %br
+    %br
+    %br
+    %p Orchestration API in Azure cloud
+    %br
+    %p
+      .green Pros:
+      %br
+      %ul
+        %li Variables
+        %li Resource level versioning
+    %p
+      .red Cons:
+      %br
+      %ul
+        %li Intrinsic functions are strings
+        %li Resources an Array

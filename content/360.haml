@@ -1,0 +1,35 @@
+%slide
+  %hgroup
+    %h2 SparkleFormation in ARM
+  %article
+    %p Template
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:example, :provider => :azure) do
+          resources.my_resource do
+            type 'Custom/resourceTypes'
+          end
+        end
+    %div{:style => 'float: right; width: 48%; font-size: 80%'}
+      %p Final JSON
+      %pre.prettyprint{'data-lang' => 'json', :style => 'padding: 0; font-size: smaller;'}
+        :preserve
+          {
+            "resources": [
+              {
+                "type": "Custom/resourceTypes",
+                "name": "myResource"
+              }
+            ]
+          }
+    %div{:style => 'float: left; width: 48%; font-size: 80%'}
+      %p Internal data structure
+      %pre.prettyprint{'data-lang' => 'ruby', :style => 'padding: 0; font-size: smaller;'}
+        :preserve
+          {
+            "resources" => {
+              "myResource" => {
+                "type" => "Custom/resourceTypes"
+              }
+            }
+          }

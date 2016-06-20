@@ -1,0 +1,22 @@
+%slide
+  %hgroup
+    %h2 Pack Layering Example
+  %article
+    %p Root pack node dynamic
+    %pre.prettyprint{'data-lang' => 'ruby', :style => 'font-size: 60%'}
+      :preserve
+        SparkleFormation.dynamic(:node) do |name|
+          resources.set!("\#{name}_instance").type 'AWS::EC2::Instance'
+        end
+    %p Security pack node dynamic
+    %pre.prettyprint{'data-lang' => 'ruby', :style => 'font-size: 60%'}
+      :preserve
+        SparkleFormation.dynamic(:node, :layering => :merge) do |name|
+          resources.set!("\#{name}_security").type 'AWS::EC2::SecurityGroup'
+        end
+    %p Template usage
+    %pre.prettyprint{'data-lang' => 'ruby', :style => 'font-size: 60%'}
+      :preserve
+        SparkleFormation.new(:example) do
+          dynamic!(:node, :test)
+        end

@@ -1,0 +1,100 @@
+%slide
+  %hgroup
+    %h2 Nested Stack Linking
+  %article
+    %pre.prettyprint.auto-scroll{'data-lang' => 'json', :style => 'height: 70%'}
+      :preserve
+        {
+          "Resources": {
+            "Endpoint": {
+              "Type": "AWS::CloudFormation::Stack",
+              "Properties": {
+                "Stack": {
+                  "Resources": {
+                    "FrontendLoadBalancer": {
+                      "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+                      "Properties": {
+                        "Listeners": [
+                          {
+                            "InstancePort": 80,
+                            "LoadBalancerPort": 80,
+                            "InstanceProtocol": "HTTP",
+                            "Protocol": "HTTP"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Outputs": {
+                    "EndpointArn": {
+                      "Value": {
+                        "Ref": "FrontendLoadBalancer"
+                      }
+                    },
+                    "EndpointDns": {
+                      "Value": {
+                        "Fn::GetAtt": [
+                          "FrontendLoadBalancer",
+                          "DNSName"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "TemplateURL": "http://example.com/bucket/nested-stack-templates/application_Endpoint.json"
+              }
+            },
+            "Workers": {
+              "Type": "AWS::CloudFormation::Stack",
+              "Properties": {
+                "Parameters": {
+                  "EndpointArn": {
+                    "Fn::GetAtt": [
+                      "Endpoint",
+                      "Outputs.EndpointArn"
+                    ]
+                  }
+                },
+                "Stack": {
+                  "Parameters": {
+                    "EndpointArn": {
+                      "Type": "String"
+                    }
+                  },
+                  "Resources": {
+                    "WorkersLaunchConfiguration": {
+                      "Type": "AWS::AutoScaling::LaunchConfiguration",
+                      "Properties": {
+                        "ImageId": "ami-0000",
+                        "InstanceType": "t2.micro",
+                        "KeyName": "default",
+                        "UserData": {
+                          "Fn::Base64": "#!/bin/sh\necho 'configure stuff'\n"
+                        }
+                      }
+                    },
+                    "WorkersAutoScalingGroup": {
+                      "Type": "AWS::AutoScaling::AutoScalingGroup",
+                      "Properties": {
+                        "AvailabilityZones": {
+                          "Fn::GetAZs": ""
+                        },
+                        "LaunchConfigurationName": {
+                          "Ref": "WorkersLaunchConfiguration"
+                        },
+                        "MinSize": 1,
+                        "MaxSize": 3,
+                        "LoadBalancerNames": [
+                          {
+                            "Ref": "EndpointArn"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "TemplateURL": "http://example.com/bucket/nested-stack-templates/application_Workers.json"
+              }
+            }
+          }
+        }

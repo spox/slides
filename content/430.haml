@@ -1,0 +1,17 @@
+%slide
+  %hgroup
+    %h2 Pack Layering Result
+  %article
+    %p Template generated JSON
+    %pre.prettyprint{'data-lang' => 'json'}
+      :preserve
+        {
+          "Resources": {
+            "TestInstance": {
+              "Type": "AWS::EC2::Instance"
+            },
+            "TestSecurity": {
+              "Type": "AWS::EC2::SecurityGroup"
+            }
+          }
+        }

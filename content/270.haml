@@ -1,19 +1,13 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/taskmanager.png'}
   %hgroup
-    %h2 The .sfn file
+    %h2 Workers Graph
   %article
-    %pre.prettyprint{'data-lang' => 'ruby'}
+    %p Resource dependencies (still simple)
+    %pre.prettyprint{'data-lang' => 'bash'}
       :preserve
-        Configuration.new do
-          options do
-            capabilities ['CAPABILITY_IAM']
-          end
-          credentials do
-            provider :aws
-            credentials do
-              MIASMA_API_OPTIONS
-            end
-          end
-        end
+        $ sfn graph --file workers --output-type png
+    %br
+    %br
+    %br
+    %center
+      %img{:src => 'images/workers.png'}

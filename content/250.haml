@@ -1,14 +1,13 @@
 %slide
   %hgroup
-    %h2 Composition of sfn
+    %h2 Endpoint Graph
   %article
-    %ul
-      %li Bogo libraries
-      %ul
-        %li Common command interface
-        %li Common configuration interface
-      %li Miasma libraries
-      %ul
-        %li Consistent cloud resource models
-        %li Provider specific drivers
-        %li Light-weight cloud library
+    %p Resource dependencies (simple)
+    %pre.prettyprint{'data-lang' => 'bash'}
+      :preserve
+        $ sfn graph --file endpoint --output-type png
+    %br
+    %br
+    %br
+    %center
+      %img{:src => 'images/endpoint.png'}

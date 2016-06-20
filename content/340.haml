@@ -1,0 +1,22 @@
+%slide
+  %hgroup
+    %h2 SparkleFormation Templates
+  %article
+    %p Consistent template structure
+    %p
+      %b Common Items
+      %ul
+        %li Parameters
+        %li Resources
+        %li Outputs
+    %br
+    %p
+      %b Common Type:
+      Hash
+    %br
+    %p
+      %b Provider identification
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:example, :provider => :azure) do
+          ...

@@ -1,0 +1,19 @@
+%slide
+  %hgroup
+    %h2 Callbacks
+  %article
+    %p Add custom functionality
+    %ul
+      %li Stack policy generation
+      %li AWS MFA token generation
+      %li Serverspec integration
+
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        resources.my_ec2_instance do
+          type 'AWS::EC2::Instance'
+          proeprties do
+            ...
+          end
+          serverspec.spec_patterns [File.join(Dir.pwd, 'specs/compute/*_spec.rb')]
+        end

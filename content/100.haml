@@ -5,7 +5,7 @@
   %article
     %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        SparkleFormation.new do
+        SparkleFormation.new(:example) do
           mappings do
             amis do
               set!('us-east-1'.disable_camel!, 'ami-888888')

@@ -1,20 +1,16 @@
 %slide
   %hgroup
-    %h2 sfn commands
+    %h2 Composing stacks
   %article
-    %p Template
-    %pre.prettyprint{'data-lang' => ''}
+    %p Create application stack
+    %ul
+      %li Nest endpoint to provide ELB
+      %li Nest workers after endpoint
+      %li Automatic stack linking
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        $ sfn validate
-    %p Life cycle
-    %pre.prettyprint{'data-lang' => ''}
-      :preserve
-        $ sfn create
-        $ sfn update
-        $ sfn destroy
-    %p Inspection
-    %pre.prettyprint{'data-lang' => ''}
-      :preserve
-        $ sfn describe
-        $ sfn inspect
-        $ sfn events
+        SparkleFormation.new(:application) do
+          nest!(:endpoint)
+          nest!(:workers)
+        end

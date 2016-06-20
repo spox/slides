@@ -1,0 +1,62 @@
+%slide
+  %hgroup
+    %h2 GCDM SparkleFormation Template
+  %article
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:example, :provider => :google) do
+          parameters.creator.type 'string'
+          dynamic!(:v1_bucket, :my_bucket, :sparkle_unique)
+          outputs.owner.value property!(:creator)
+        end
+    %pre.prettyprint.auto-scroll{'data-lang' => 'json', :style => 'height: 50%; font-size: 60%'}
+      :preserve
+        {
+          "imports": [
+            {
+              "name": "google.jinja",
+              "content": {
+                "resources": [
+                  {
+                    "type": "storage.v1.bucket",
+                    "name": "my-bucket-kjkmaatdcn"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "value": "{{ properties[\"creator\"] }}",
+                    "name": "owner"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "google.jinja.schema",
+              "content": {
+                "info": {
+                  "title": "google.jinja template",
+                  "description": "google.jinja template schema"
+                },
+                "properties": {
+                  "creator": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "config": {
+            "content": {
+              "resources": [
+                {
+                  "name": "google",
+                  "type": "google.jinja"
+                }
+              ],
+              "imports": [
+                "google.jinja",
+                "google.jinja.schema"
+              ]
+            }
+          }
+        }

@@ -1,9 +1,23 @@
 %slide
   %hgroup
-    %h2 The sfn command
+    %h2 Stack Resource Graphing
   %article
-    %ul
-      %li Originated as a knife plugin
-      %li Built using the fog library
-      %li Refactored to standalone application
-      %li Removed fog integration
+    %p Simple frontend endpoint stack
+    %pre.prettyprint{'data-lang' => 'ruby', :style => 'height: 70%'}
+      :preserve
+        SparkleFormation.new(:endpoint) do
+          frontend = dynamic!(:load_balancer, :frontend).properties do
+            listeners array!(
+              ->{
+                instance_port 80
+                load_balancer_port 80
+                instance_protocol 'HTTP'
+                protocol 'HTTP'
+              }
+            )
+          end
+          outputs do
+            endpoint_arn.value ref!(frontend.resource_name!)
+            endpoint_dns.value attr!(frontend.resource_name!, 'DNSName')
+          end
+        end

@@ -1,7 +1,7 @@
 {
     "settings": {
         "title": "SparkleFormation",
-        "subtitle": "Defining Infrastructure as Code",
+        "subtitle": "Declaring Infrastructure",
         "useBuilds": true,
         "usePrettify": true,
         "enableSlideAreas": true,
@@ -16,7 +16,7 @@
     },
     "presenters": [{
         "name": "Chris Roberts",
-        "company": "Percusive Maintenance Engineer<br>Heavy Water",
+        "company": "Percusive Maintenance Engineer",
         "twitter": "@_spox",
         "www": "http://code.chrisroberts.org",
         "github": "http://github.com/chrisroberts"
@@ -24,17 +24,17 @@
     "layouts": {
         "template": "base",
         "theme": "default",
-        "bookend_slide_image": "hw_logo_b_bottom_512.png",
+        "bookend_slide_image": "initial.gif",
         "title_segue_image": "sparkle-logo.png",
-        "thank_you_segue_image": "hw_logo_72.png",
+        "thank_you_segue_image": "fry.png",
         "default_segue_image": null,
         "thank_you_title": null,
         "increment_every": null
     },
     "styling": {
-        "social-tags": "'<http://heavywater.io>'",
+        "social-tags": "'[ http://spox.github.io/slides/pdxdevops ]'",
         "brand-small-icon-size": "32px",
-        "brand-small-icon-file": "'hw_logo_32.png'",
-        "title-page-image-bottom": "'hw_logo_72.png'"
+        "brand-small-icon-file": "'fry.jpg'",
+        "title-page-image-bottom": "'fry.png'"
     }
 }

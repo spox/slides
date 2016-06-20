@@ -1,0 +1,24 @@
+%slide
+  %hgroup
+    %h2
+      Stack Linking
+  %article
+    %pre.prettyprint{'data-lang' => 'shell'}
+      :preserve
+        $ sfn create application --apply-stack networking
+    %p
+    %ul
+      %li Allows manual stack association
+      %li Stack output names matched to stack parameter names
+      %li Requires user interaction on updates
+
+    %b Existing stack
+    %br
+    %br
+    %img{:src => 'images/apply-outputs.png'}
+    %br
+    %br
+    %b Stack creation with linking
+    %br
+    %br
+    %img{:src => 'images/apply-create.png'}

@@ -1,0 +1,24 @@
+%slide
+  %hgroup
+    %h2 Nested Stack Linking
+  %article
+    %p Important parts
+    %pre.prettyprint{'data-lang' => 'json', :style => 'height: 70%'}
+      :preserve
+        {
+          "Resources": {
+            "Endpoint": {
+              "Type": "AWS::CloudFormation::Stack",
+            ...
+            "Workers": {
+              "Type": "AWS::CloudFormation::Stack",
+              "Properties": {
+                "Parameters": {
+                  "EndpointArn": {
+                    "Fn::GetAtt": [
+                      "Endpoint",
+                      "Outputs.EndpointArn"
+                    ]
+                  }
+                },
+                ...

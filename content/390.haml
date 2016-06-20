@@ -1,0 +1,24 @@
+%slide
+  %hgroup
+    %h2
+      String evaluation -
+      %span{:style => 'font-size: 80%; color: 888888'} because it's "easier"
+  %article
+    %b Example usage
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:test, :provider => :azure) do
+          test concat!('fubar', add!(1, 2))
+        end
+    %br
+    %br
+    %b Example output
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'json'}
+      :preserve
+        {
+          "test": "[concat('fubar', add(1, 2))]"
+        }

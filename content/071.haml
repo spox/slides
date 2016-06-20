@@ -6,13 +6,13 @@
     %p Dot notation
     %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        SparkleFormation.new do
+        SparkleFormation.new(:example) do
           resources.my_ec2_instance.properties.image_id 'ami-21212'
         end
     %p Block notation
     %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        SparkleFormation.new do
+        SparkleFormation.new(:example) do
           resources do
             my_ec2_instance do
               properties do

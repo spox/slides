@@ -1,13 +1,23 @@
 %slide
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/computer.png'}
   %hgroup
-    %h2 Configuration of sfn
+    %h2 Stack Resource Graphing
   %article
-    %p The bogo-config library is used to configure the sfn command.
-    %p Acceptable formats:
-    %ul
-      %li Ruby - AttributeStruct style
-      %li JSON
-      %li YAML
-      %li XML
+    %p Worker backend stack
+    %pre.prettyprint{'data-lang' => 'ruby', :style => 'height: 70%', 'data-scroll-duration' => 5000}
+      :preserve
+        SparkleFormtion.new(:workers) do
+          parameters.endpoint_arn.type 'String'
+          launch = dynamic!(:launch_configuration, :workers).properties do
+            image_id 'ami-0000'
+            instance_type 't2.micro'
+            key_name 'default'
+            user_data base64!("#!/bin/sh\necho 'configure stuff'\n")
+          end
+          dynamic!(:auto_scaling_group, :workers).properties do
+            availability_zones azs!
+            launch_configuration_name ref!(launch.resource_name!)
+            min_size 1
+            max_size 3
+            load_balancer_names [ref!(:endpoint_arn)]
+          end
+        end

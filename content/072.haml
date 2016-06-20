@@ -5,7 +5,7 @@
   %article
     %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        SparkleFormation.new do
+        SparkleFormation.new(:example) do
           prefix = '00'
           parameters('01_creator') do
             type 'String'
@@ -16,7 +16,7 @@
         end
     %pre.prettyprint{'data-lang' => 'ruby'}
       :preserve
-        SparkleFormation.new do
+        SparkleFormation.new(:example) do
           prefix = '00'
           parameters.set!('01_creator').type 'String'
           parameters.set!("\#{prefix}_info").type 'String'

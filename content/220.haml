@@ -1,5 +1,14 @@
-%slide{:class => 'segue dark quote nobackground'}
-  %aside{:class => 'gdbar bottom right'}
-    %img{:src => 'images/sfn-logo.png'}
-  %article{:class => 'flexbox vleft auto-fadein'}
-    %q SparkleFormation CLI - sfn
+%slide
+  %hgroup
+    %h2
+      Template Inheritance
+  %article
+    %p Slight template adjustments
+    %br
+    %br
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        SparkleFormation.new(:custom_tester, :inherit => :tester) do
+          dynamic!(:s3_bucket, :storage)
+          outputs.storage_bucket.value ref!(storage_bucket.resource_name!)
+        end

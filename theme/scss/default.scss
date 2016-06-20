@@ -373,6 +373,12 @@ pre.auto-scroll {
   height: 80%;
 }
 
+pre.prettyprint {
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+
 code {
   font-size: 95%;
   font-family: 'Source Code Pro', 'Courier New', monospace;

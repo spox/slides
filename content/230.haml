@@ -1,10 +1,14 @@
 %slide
   %hgroup
     %h2
-      The SparkleFormation CLI
+      Stack Nesting
   %article
-    %p Orchestration API interface
+    %p Building stacks from stacks
     %ul
-      %li Integrated with SparkleFormation library
-      %li Provides access to stack life cycle actions
-      %li Multiple provider API support
+      %li Native stack resource type
+      %li Stack resources can reference outputs
+      %li Logical grouping of resource collections
+      %li Allows "unit composition"
+      %li Automatic cross stack resource updates
+    %div{:style => 'float: right'}
+      %img{:src => 'images/nested-meme.jpg', :style => 'width: 60%; height: 40%'}

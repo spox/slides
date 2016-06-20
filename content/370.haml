@@ -1,0 +1,76 @@
+%slide
+  %hgroup
+    %h2 Google Cloud Deployment Manager
+  %article{:style => 'float:right; width: 45%'}
+    %pre.prettyprint{'data-lang' => 'json', :style => 'height: 70%; padding-left: 5px; font-size: 60%'}
+      :preserve
+        {
+          "imports": [
+            {
+              "name": "google.jinja",
+              "content": {
+                "resources": [
+                  {
+                    "type": "storage.v1.bucket",
+                    "name": "my-bucket-kjkmaatdcn"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "value": "{{ properties[\"creator\"] }}",
+                    "name": "owner"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "google.jinja.schema",
+              "content": {
+                "info": {
+                  "title": "google.jinja template",
+                  "description": "google.jinja template schema"
+                },
+                "properties": {
+                  "creator": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "config": {
+            "content": {
+              "resources": [
+                {
+                  "name": "google",
+                  "type": "google.jinja"
+                }
+              ],
+              "imports": [
+                "google.jinja",
+                "google.jinja.schema"
+              ]
+            }
+          }
+        }
+
+  %article{:style => 'width: 45%; font-size: 80%'}
+    %br
+    %br
+    %br
+    %p Orchestration API in Google cloud
+    %br
+    %p
+      .green Pros:
+      %br
+      %ul
+        %li Supports templates
+    %p
+      .red Cons:
+      %br
+      %ul
+        %li Intrinsic functions are strings (Jinja)
+        %li Resources an Array
+        %li Outputs an Array
+        %li Jinja support only within subfiles
+        %li Parameters defined within subfiles

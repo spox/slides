@@ -2,17 +2,44 @@
   %hgroup
     %h2 SparkleFormation template
   %article
-    %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%'}
-      :preserve
-        SparkleFormation.new do
-          AWSTemplateFormatVersion '2010-09-09'
-          description 'My SparkleFormation Stack'
-          dynamic!(:ec2_instance, :my) do
-            properties do
-              image_id 'ami-c0e78ba0'
-              instance_type 'm1.small'
-              key_name 'demo-infra'
+    %div{:style => 'width: 100%'}
+      %pre.prettyprint.auto-scroll{'data-lang' => 'json', :style => 'width: 49%; font-size: 60%; height: 70%; float: right; padding: 5px;'}
+        :preserve
+          {
+            "AWSTemplateFormatVersion": "2010-09-09",
+            "Description": "My SparkleFormation Stack",
+            "Resources": {
+              "MyEc2Instance": {
+                "Type": "AWS::EC2::Instance",
+                "Properties": {
+                  "ImageId": "ami-c0e78ba0",
+                  "InstanceType": "m1.small",
+                  "KeyName": "demo-infra"
+                }
+              }
+            },
+            "Outputs": {
+              "MyInstanceAddress": {
+                "Value": {
+                  "Fn::GetAtt": [
+                    "MyEc2Instance",
+                    "PublicIp"
+                  ]
+                }
+              }
+            }
+          }
+      %pre.prettyprint.auto-scroll{'data-lang' => 'ruby', :style => 'height: 70%; width: 49%; font-size: 60%; padding: 5px; padding-top: 50px'}
+        :preserve
+          SparkleFormation.new(:example) do
+            AWSTemplateFormatVersion '2010-09-09'
+            description 'My SparkleFormation Stack'
+            dynamic!(:ec2_instance, :my) do
+              properties do
+                image_id 'ami-c0e78ba0'
+                instance_type 'm1.small'
+                key_name 'demo-infra'
+              end
             end
+            outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)
           end
-          outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)
-        end
