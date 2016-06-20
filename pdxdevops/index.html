@@ -1,0 +1,898 @@
+<html>
+  <head>
+    <title>Presentation</title>
+    <meta charset='utf-8'>
+    <meta content='chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <link href='theme/css/default.css' media='all' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' media='all' rel='stylesheet'>
+    <link href='theme/css/phone.css' media='only screen and (max-device-width: 480px)' rel='stylesheet'>
+    <base target='_blank'>
+    <script src='js/jquery.min.js'></script>
+    <script data-main='js/slides' src='js/require-1.0.8.min.js'></script>
+  </head>
+  <body style='opacity: 0'>
+    <slides class='layout-widescreen'>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/initial.gif'>
+          </span>
+        </article>
+      </slide>
+      <slide class='title-slide segue nobackground'>
+        <aside class='gdbar'>
+          <img src='images/sparkle-logo.png'>
+        </aside>
+        <hgroup class='auto-fadin'>
+          <h1 data-config-title></h1>
+          <h2 data-config-subtitle></h2>
+          <p data-config-presenter></p>
+        </hgroup>
+      </slide>
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/chat.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            Preamble to the ramble
+          </h2>
+        </hgroup>
+        <article>
+          <p>
+            <b>Lots to talk about</b>
+            <ul>
+              <li>Want to talk about more than basics</li>
+              <li>DSL features shown quickly</li>
+              <li>Lets see cool stuff</li>
+            </ul>
+          </p>
+          <p>
+            <b>Tools</b>
+            <ul>
+              <li>SparkleFormation - DSL library</li>
+              <li>sfn - SparkleFormation CLI</li>
+              <li>miasma - Cloud model library</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/stack.png'>
+        </aside>
+        <hgroup>
+          <pre class='prettyprint' data-lang='shell'>> sparkle_formation --composition</pre>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Orchestration API</li>
+            <ul>
+              <li>AWS CloudFormation</li>
+              <li>MS Azure Resource Manager</li>
+              <li>Eucalyptus CloudFormation</li>
+              <li>Google Cloud Deployment</li>
+              <li>OpenStack Heat</li>
+              <li>Rackspace Orchestration</li>
+            </ul>
+            <li>Orchestration Templates</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/tools.png'>
+        </aside>
+        <hgroup>
+          <pre class='prettyprint' data-lang='shell'>> sparkle_formation --related</pre>
+        </hgroup>
+        <article>
+          <p>Other popular solutions</p>
+          <ul>
+            <li>Troposphere</li>
+            <li>Terraform</li>
+            <li>Docker</li>
+            <li>Docker</li>
+            <li>This new docker thing</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/caution.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>SparkleFormation is not a 'CloudFormation wrapper'</q>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar right'>
+          <img src='images/hourglass.png'>
+        </aside>
+        <hgroup>
+          <h2>SparkleFormation History</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>AttributeStruct Library</li>
+            <li>Parse and serialize Chef resource</li>
+            <li>Support unlimited "sub-resources"</li>
+            <li>DSL for describing data</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>AttributeStruct Library</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>AttributeStruct.new do&#x000A;  package 'nginx' do&#x000A;    action :install&#x000A;  end&#x000A;end</pre>
+          <pre class='prettyprint' data-lang='ruby'>{&#x000A;  "package" => {&#x000A;    "nginx" => {&#x000A;      "action" => "install"&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar right'>
+          <img src='images/rainbow.png'>
+        </aside>
+        <hgroup>
+          <h2>SparkleFormation Origin</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Available tools too restrictive</li>
+            <ul>
+              <li>Explicit resource implementations</li>
+              <li>Difficult to customize</li>
+            </ul>
+            <li>Straight CFN == Too much JSON</li>
+            <li>DRY JSON?</li>
+            <li>
+              <strike>YAML!</strike>
+            </li>
+            <li>Rainbows and unicorns</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Simple JSON template</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint auto-scroll' data-lang='json' style='height: 70%'>{&#x000A;  "AWSTemplateFormatVersion": "2010-09-09",&#x000A;  "Description": "My SparkleFormation Stack",&#x000A;  "Resources": {&#x000A;    "MyEc2Instance": {&#x000A;      "Type": "AWS::EC2::Instance",&#x000A;      "Properties": {&#x000A;        "ImageId": "ami-c0e78ba0",&#x000A;        "InstanceType": "m1.small",&#x000A;        "KeyName": "demo-infra"&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Outputs": {&#x000A;    "MyInstanceAddress": {&#x000A;      "Value": {&#x000A;        "Fn::GetAtt": [&#x000A;          "MyEc2Instance",&#x000A;          "PublicIp"&#x000A;        ]&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>AttributeStruct template</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint auto-scroll' data-lang='ruby' style='height: 70%'>AttributeStruct.camel_keys = true&#x000A;&#x000A;AttributeStruct.new do&#x000A;  AWSTemplateFormatVersion '2010-09-09'&#x000A;  description 'My SparkleFormation Stack'&#x000A;  resources.my_ec2_instance do&#x000A;    type 'AWS::EC2::Instance'&#x000A;    properties do&#x000A;      image_id 'ami-c0e78ba0'&#x000A;      instance_type 'm1.small'&#x000A;      key_name 'demo-infra'&#x000A;    end&#x000A;  end&#x000A;  outputs.my_instance_address.value.set!(&#x000A;    'Fn::GetAtt', ['MyEc2Instance', 'PublicIp']&#x000A;  )&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation template</h2>
+        </hgroup>
+        <article>
+          <div style='width: 100%'>
+            <pre class='prettyprint auto-scroll' data-lang='json' style='width: 49%; font-size: 60%; height: 70%; float: right; padding: 5px;'>{&#x000A;  "AWSTemplateFormatVersion": "2010-09-09",&#x000A;  "Description": "My SparkleFormation Stack",&#x000A;  "Resources": {&#x000A;    "MyEc2Instance": {&#x000A;      "Type": "AWS::EC2::Instance",&#x000A;      "Properties": {&#x000A;        "ImageId": "ami-c0e78ba0",&#x000A;        "InstanceType": "m1.small",&#x000A;        "KeyName": "demo-infra"&#x000A;      }&#x000A;    }&#x000A;  },&#x000A;  "Outputs": {&#x000A;    "MyInstanceAddress": {&#x000A;      "Value": {&#x000A;        "Fn::GetAtt": [&#x000A;          "MyEc2Instance",&#x000A;          "PublicIp"&#x000A;        ]&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}</pre>
+            <pre class='prettyprint auto-scroll' data-lang='ruby' style='height: 70%; width: 49%; font-size: 60%; padding: 5px; padding-top: 50px'>SparkleFormation.new(:example) do&#x000A;  AWSTemplateFormatVersion '2010-09-09'&#x000A;  description 'My SparkleFormation Stack'&#x000A;  dynamic!(:ec2_instance, :my) do&#x000A;    properties do&#x000A;      image_id 'ami-c0e78ba0'&#x000A;      instance_type 'm1.small'&#x000A;      key_name 'demo-infra'&#x000A;    end&#x000A;  end&#x000A;  outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)&#x000A;end</pre>
+          </div>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - notation
+          </h2>
+        </hgroup>
+        <article>
+          <p>Dot notation</p>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  resources.my_ec2_instance.properties.image_id 'ami-21212'&#x000A;end</pre>
+          <p>Block notation</p>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  resources do&#x000A;    my_ec2_instance do&#x000A;      properties do&#x000A;        image_id 'ami-21212'&#x000A;      end&#x000A;    end&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Invalid syntax / Composite keys
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  prefix = '00'&#x000A;  parameters('01_creator') do&#x000A;    type 'String'&#x000A;  end&#x000A;  parameters("#{prefix}_info") do&#x000A;    type 'String'&#x000A;  end&#x000A;end</pre>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  prefix = '00'&#x000A;  parameters.set!('01_creator').type 'String'&#x000A;  parameters.set!("#{prefix}_info").type 'String'&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Arrays
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  resources.my_ec2_instance.properties do&#x000A;    # With DSL support via Proc&#x000A;    tags array!(&#x000A;      ->{&#x000A;        name 'Creator'&#x000A;        value ref!(:stack_creator)&#x000A;      }&#x000A;    )&#x000A;    # Without DSL support&#x000A;    tags [{'Name' => 'Creator', 'Value' => ref!(:stack_creator)}]&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Camels
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  mappings do&#x000A;    amis do&#x000A;      set!('us-east-1'.disable_camel!, 'ami-888888')&#x000A;      set!('us-west-2'.disable_camel!, 'ami-111111')&#x000A;    end&#x000A;    camel_keys_set!(:auto_disable)&#x000A;    environments do&#x000A;      production 'IS_PROD'&#x000A;      development 'IS_DEV'&#x000A;    end&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Deletion
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  parameters do&#x000A;    stack_creator.type 'String'&#x000A;    instance_size.type 'String'&#x000A;  end&#x000A;&#x000A;  ...&#x000A;&#x000A;  parameters.delete!(:stack_creator)</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Raw Data
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  parameters do&#x000A;    stack_creator.type 'String'&#x000A;    instance_size.type 'String'&#x000A;  end&#x000A;&#x000A;  ...&#x000A;&#x000A;  # Hash values at context&#x000A;  parameters.data!.keys.each do |key|&#x000A;    outputs.set!(key).value ref!(key)&#x000A;  end&#x000A;&#x000A;  # Key values at context&#x000A;  parameters.keys!.each do |key|&#x000A;    outputs.set!(key).value ref!(key)&#x000A;  end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            DSL Features - Hierarchy Helpers
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example) do&#x000A;  parameters.key_name.type 'String'&#x000A;  resources.my_instance do&#x000A;    type 'AWS::EC2::Instance'&#x000A;    properties do&#x000A;      key_name ref!(:key_name)&#x000A;      tags array!(&#x000A;        ->{&#x000A;          name 'KeyName'&#x000A;          # Parent from current context&#x000A;          value parent!.key_name&#x000A;          # Template root&#x000A;          value root!.resources.my_instance.properties.key_name&#x000A;        }&#x000A;      )&#x000A;    end&#x000A;  end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar top right'>
+          <img src='images/sparkle-logo.png'>
+        </aside>
+        <hgroup>
+          <h2>SparkleFormation Library</h2>
+        </hgroup>
+        <article>
+          <ul>
+            <li>Built on AttributeStruct</li>
+            <li>Provides a reusability framework</li>
+            <ul>
+              <li>Components (single use)</li>
+              <li>Dynamics (multiple use)</li>
+              <li>Registry (data use)</li>
+            </ul>
+            <li>Provider specific generation helpers</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Template Breakdown - Finding patterns
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:tester) do&#x000A;  AWSTemplateFormatVersion '2010-09-09'&#x000A;  description 'My SparkleFormation Stack'&#x000A;  parameters do&#x000A;    stack_creator.type 'String'&#x000A;    key_name.type 'String'&#x000A;    ami_id.type 'String'&#x000A;  end&#x000A;  dynamic!(:ec2_instance, :my) do&#x000A;    properties do&#x000A;      image_id ref!(:ami_id)&#x000A;      key_name ref!(:key_name)&#x000A;      instance_type 'm1.small'&#x000A;    end&#x000A;  end&#x000A;  outputs.my_instance_address.value attr!(:my_ec2_instance, :public_ip)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Framework - Components
+          </h2>
+        </hgroup>
+        <article>
+          <p>Identify single use information</p>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.component(:base) do&#x000A;  AWSTemplateFormatVersion '2010-09-09'&#x000A;  description 'My SparkleFormation Stack'&#x000A;  parameters do&#x000A;    stack_creator.type 'String'&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Framework - Dynamics
+          </h2>
+        </hgroup>
+        <article>
+          <p>Identify multiple use information</p>
+          <pre class='prettyprint' data-lang='ruby' style='height: 70%'>SparkleFormation.dynamic(:node) do |n_name, n_config={}|&#x000A;  parameters do&#x000A;    set!("#{n_name}_key_name").type 'String'&#x000A;    set!("#{n_name}_ami_id").type 'String'&#x000A;  end&#x000A;  instance_resource = dynamic!(:ec2_instance, n_name) do&#x000A;    properties do&#x000A;      image_id ref!("#{n_name}_ami_id".to_sym)&#x000A;      key_name ref!("#{n_name}_key_name".to_sym)&#x000A;      instance_type 'm1.small'&#x000A;    end&#x000A;  end&#x000A;  outputs do&#x000A;    set!("#{n_name}_instance_address").value attr!(&#x000A;      "#{n_name}_ec2_instance".to_sym, :public_ip&#x000A;    )&#x000A;  end&#x000A;  instance_resource&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Framework - Template
+          </h2>
+        </hgroup>
+        <article>
+          <p>Use new framework items for template</p>
+          <p class='blue3'>The #load helper method injects components</p>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:tester).load(:base).overrides do&#x000A;  dynamic!(:node, :first)&#x000A;  # Now reusable&#x000A;  dynamic!(:node, :second)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Directory Structure
+          </h2>
+        </hgroup>
+        <article>
+          <p>SparkleFormation framework directory structure</p>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='shell'>.&#x000A;|____sparkleformation&#x000A;| |____tester.rb&#x000A;| |____dynamics&#x000A;| | |____node.rb&#x000A;| |____components&#x000A;| | |____base.rb</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            SparkleFormation Helper Methods
+          </h2>
+        </hgroup>
+        <article>
+          <p>Generating common data structures</p>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>ref!(:stack_creator)&#x000A;  # => {"Ref": "StackCreator"}&#x000A;attr!(:node, :public_ip)&#x000A;  # => {"Fn::Att": ["Node", "PublicIp"]}&#x000A;stack_id!&#x000A;  # => {"Ref": "AWS::StackId"}&#x000A;account_id!&#x000A;  # => {"Ref": "AWS::AccountId"}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/compose.png'>
+        </aside>
+        <hgroup>
+          <h2>
+            Template Compilation
+          </h2>
+        </hgroup>
+        <article>
+          <p>Compilation things</p>
+          <ul>
+            <li>Top down compilation</li>
+            <li>Components loaded first, in order</li>
+            <li>Overrides applied last</li>
+            <li>Allows customized modifications</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Template Modifications
+          </h2>
+        </hgroup>
+        <article>
+          <p>Modify generic data</p>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:tester).load(:base).overrides do&#x000A;  dynamic!(:node, :first) do&#x000A;    properties.key_name 'my-custom-key'&#x000A;  end&#x000A;  dynamic!(:node, :second)&#x000A;  outputs.delete!(:second_instance_address)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Template Inheritance
+          </h2>
+        </hgroup>
+        <article>
+          <p>Slight template adjustments</p>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:custom_tester, :inherit => :tester) do&#x000A;  dynamic!(:s3_bucket, :storage)&#x000A;  outputs.storage_bucket.value ref!(storage_bucket.resource_name!)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Stack Linking
+          </h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='shell'>$ sfn create application --apply-stack networking</pre>
+          <p></p>
+          <ul>
+            <li>Allows manual stack association</li>
+            <li>Stack output names matched to stack parameter names</li>
+            <li>Requires user interaction on updates</li>
+          </ul>
+          <b>Existing stack</b>
+          <br>
+          <br>
+          <img src='images/apply-outputs.png'>
+          <br>
+          <br>
+          <b>Stack creation with linking</b>
+          <br>
+          <br>
+          <img src='images/apply-create.png'>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            Stack Nesting
+          </h2>
+        </hgroup>
+        <article>
+          <p>Building stacks from stacks</p>
+          <ul>
+            <li>Native stack resource type</li>
+            <li>Stack resources can reference outputs</li>
+            <li>Logical grouping of resource collections</li>
+            <li>Allows "unit composition"</li>
+            <li>Automatic cross stack resource updates</li>
+          </ul>
+          <div style='float: right'>
+            <img src='images/nested-meme.jpg' style='width: 60%; height: 40%'>
+          </div>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Stack Resource Graphing</h2>
+        </hgroup>
+        <article>
+          <p>Simple frontend endpoint stack</p>
+          <pre class='prettyprint' data-lang='ruby' style='height: 70%'>SparkleFormation.new(:endpoint) do&#x000A;  frontend = dynamic!(:load_balancer, :frontend).properties do&#x000A;    listeners array!(&#x000A;      ->{&#x000A;        instance_port 80&#x000A;        load_balancer_port 80&#x000A;        instance_protocol 'HTTP'&#x000A;        protocol 'HTTP'&#x000A;      }&#x000A;    )&#x000A;  end&#x000A;  outputs do&#x000A;    endpoint_arn.value ref!(frontend.resource_name!)&#x000A;    endpoint_dns.value attr!(frontend.resource_name!, 'DNSName')&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Endpoint Graph</h2>
+        </hgroup>
+        <article>
+          <p>Resource dependencies (simple)</p>
+          <pre class='prettyprint' data-lang='bash'>$ sfn graph --file endpoint --output-type png</pre>
+          <br>
+          <br>
+          <br>
+          <center>
+            <img src='images/endpoint.png'>
+          </center>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Stack Resource Graphing</h2>
+        </hgroup>
+        <article>
+          <p>Worker backend stack</p>
+          <pre class='prettyprint' data-lang='ruby' data-scroll-duration='5000' style='height: 70%'>SparkleFormtion.new(:workers) do&#x000A;  parameters.endpoint_arn.type 'String'&#x000A;  launch = dynamic!(:launch_configuration, :workers).properties do&#x000A;    image_id 'ami-0000'&#x000A;    instance_type 't2.micro'&#x000A;    key_name 'default'&#x000A;    user_data base64!("#!/bin/sh\necho 'configure stuff'\n")&#x000A;  end&#x000A;  dynamic!(:auto_scaling_group, :workers).properties do&#x000A;    availability_zones azs!&#x000A;    launch_configuration_name ref!(launch.resource_name!)&#x000A;    min_size 1&#x000A;    max_size 3&#x000A;    load_balancer_names [ref!(:endpoint_arn)]&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Workers Graph</h2>
+        </hgroup>
+        <article>
+          <p>Resource dependencies (still simple)</p>
+          <pre class='prettyprint' data-lang='bash'>$ sfn graph --file workers --output-type png</pre>
+          <br>
+          <br>
+          <br>
+          <center>
+            <img src='images/workers.png'>
+          </center>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Composing stacks</h2>
+        </hgroup>
+        <article>
+          <p>Create application stack</p>
+          <ul>
+            <li>Nest endpoint to provide ELB</li>
+            <li>Nest workers after endpoint</li>
+            <li>Automatic stack linking</li>
+          </ul>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:application) do&#x000A;  nest!(:endpoint)&#x000A;  nest!(:workers)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Application Graph</h2>
+        </hgroup>
+        <article>
+          <p>Resource dependencies (cross stack)</p>
+          <pre class='prettyprint' data-lang='bash'>$ sfn graph --file application --output-type png</pre>
+          <br>
+          <br>
+          <br>
+          <center>
+            <img src='images/application.png' style='width: 100%;'>
+          </center>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Nested Stack Linking</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint auto-scroll' data-lang='json' style='height: 70%'>{&#x000A;  "Resources": {&#x000A;    "Endpoint": {&#x000A;      "Type": "AWS::CloudFormation::Stack",&#x000A;      "Properties": {&#x000A;        "Stack": {&#x000A;          "Resources": {&#x000A;            "FrontendLoadBalancer": {&#x000A;              "Type": "AWS::ElasticLoadBalancing::LoadBalancer",&#x000A;              "Properties": {&#x000A;                "Listeners": [&#x000A;                  {&#x000A;                    "InstancePort": 80,&#x000A;                    "LoadBalancerPort": 80,&#x000A;                    "InstanceProtocol": "HTTP",&#x000A;                    "Protocol": "HTTP"&#x000A;                  }&#x000A;                ]&#x000A;              }&#x000A;            }&#x000A;          },&#x000A;          "Outputs": {&#x000A;            "EndpointArn": {&#x000A;              "Value": {&#x000A;                "Ref": "FrontendLoadBalancer"&#x000A;              }&#x000A;            },&#x000A;            "EndpointDns": {&#x000A;              "Value": {&#x000A;                "Fn::GetAtt": [&#x000A;                  "FrontendLoadBalancer",&#x000A;                  "DNSName"&#x000A;                ]&#x000A;              }&#x000A;            }&#x000A;          }&#x000A;        },&#x000A;        "TemplateURL": "http://example.com/bucket/nested-stack-templates/application_Endpoint.json"&#x000A;      }&#x000A;    },&#x000A;    "Workers": {&#x000A;      "Type": "AWS::CloudFormation::Stack",&#x000A;      "Properties": {&#x000A;        "Parameters": {&#x000A;          "EndpointArn": {&#x000A;            "Fn::GetAtt": [&#x000A;              "Endpoint",&#x000A;              "Outputs.EndpointArn"&#x000A;            ]&#x000A;          }&#x000A;        },&#x000A;        "Stack": {&#x000A;          "Parameters": {&#x000A;            "EndpointArn": {&#x000A;              "Type": "String"&#x000A;            }&#x000A;          },&#x000A;          "Resources": {&#x000A;            "WorkersLaunchConfiguration": {&#x000A;              "Type": "AWS::AutoScaling::LaunchConfiguration",&#x000A;              "Properties": {&#x000A;                "ImageId": "ami-0000",&#x000A;                "InstanceType": "t2.micro",&#x000A;                "KeyName": "default",&#x000A;                "UserData": {&#x000A;                  "Fn::Base64": "#!/bin/sh\necho 'configure stuff'\n"&#x000A;                }&#x000A;              }&#x000A;            },&#x000A;            "WorkersAutoScalingGroup": {&#x000A;              "Type": "AWS::AutoScaling::AutoScalingGroup",&#x000A;              "Properties": {&#x000A;                "AvailabilityZones": {&#x000A;                  "Fn::GetAZs": ""&#x000A;                },&#x000A;                "LaunchConfigurationName": {&#x000A;                  "Ref": "WorkersLaunchConfiguration"&#x000A;                },&#x000A;                "MinSize": 1,&#x000A;                "MaxSize": 3,&#x000A;                "LoadBalancerNames": [&#x000A;                  {&#x000A;                    "Ref": "EndpointArn"&#x000A;                  }&#x000A;                ]&#x000A;              }&#x000A;            }&#x000A;          }&#x000A;        },&#x000A;        "TemplateURL": "http://example.com/bucket/nested-stack-templates/application_Workers.json"&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Nested Stack Linking</h2>
+        </hgroup>
+        <article>
+          <p>Important parts</p>
+          <pre class='prettyprint' data-lang='json' style='height: 70%'>{&#x000A;  "Resources": {&#x000A;    "Endpoint": {&#x000A;      "Type": "AWS::CloudFormation::Stack",&#x000A;    ...&#x000A;    "Workers": {&#x000A;      "Type": "AWS::CloudFormation::Stack",&#x000A;      "Properties": {&#x000A;        "Parameters": {&#x000A;          "EndpointArn": {&#x000A;            "Fn::GetAtt": [&#x000A;              "Endpoint",&#x000A;              "Outputs.EndpointArn"&#x000A;            ]&#x000A;          }&#x000A;        },&#x000A;        ...</pre>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/horse.jpg'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>AWS CloudFormation</q>
+          <p>The best rodeo, but not the only rodeo</p>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Providers with Orchestration</h2>
+        </hgroup>
+        <article>
+          <p>Public and private clouds</p>
+          <ul>
+            <li>Azure - Azure Resource Manager</li>
+            <li>Eucalyptus - CloudFormation</li>
+            <li>Google - Cloud Deployment Manager</li>
+            <li>OpenStack - HEAT (Rackspace)</li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div style='text-align: right'>
+            <q>Horrible little snowflakes</q>
+          </div>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation Templates</h2>
+        </hgroup>
+        <article>
+          <p>Consistent template structure</p>
+          <p>
+            <b>Common Items</b>
+            <ul>
+              <li>Parameters</li>
+              <li>Resources</li>
+              <li>Outputs</li>
+            </ul>
+          </p>
+          <br>
+          <p>
+            <b>Common Type:</b>
+            Hash
+          </p>
+          <br>
+          <p>
+            <b>Provider identification</b>
+          </p>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example, :provider => :azure) do&#x000A;  ...</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/star.png'>
+        </aside>
+        <hgroup>
+          <h2>APIs following common structure</h2>
+        </hgroup>
+        <article>
+          <p>
+            <b>Common structure and typing</b>
+            <ul>
+              <li>AWS - CloudFormation</li>
+              <li>Eucalyptus - CloudFormation</li>
+              <li>OpenStack - HEAT</li>
+              <li>Rackspace - HEAT</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Azure Resource Manager</h2>
+        </hgroup>
+        <article style='float:right; width: 45%'>
+          <pre class='prettyprint' data-lang='json' style='height: 70%; padding-left: 5px; font-size: 60%'>{&#x000A;  "resources": [&#x000A;    {&#x000A;      "type": "Microsoft.Storage/storageAccounts",&#x000A;      "apiVersion": "2016-01-01",&#x000A;      "location": "[resourceGroup().location]",&#x000A;      "name": "[parameters('someName')]"&#x000A;    },&#x000A;    {&#x000A;      "type": "Microsoft.Storage/storageAccounts",&#x000A;      "dependsOn": [&#x000A;        "[parameters('someName')]"&#x000A;      ],&#x000A;      "apiVersion": "2016-01-01",&#x000A;      "location": "[resourceGroup().location]",&#x000A;      "name": "concatDependsOnStorageAccounts"&#x000A;    },&#x000A;    {&#x000A;      "type": "Microsoft.Storage/storageAccounts",&#x000A;      "dependsOn": [&#x000A;        "[parameters('someName')]"&#x000A;      ],&#x000A;      "apiVersion": "2016-01-01",&#x000A;      "location": "[resourceGroup().location]",&#x000A;      "name": "referenceNameStorageAccounts"&#x000A;    }&#x000A;  ]&#x000A;}</pre>
+        </article>
+        <article style='width: 45%;'>
+          <br>
+          <br>
+          <br>
+          <p>Orchestration API in Azure cloud</p>
+          <br>
+          <p>
+            <div class='green'>Pros:</div>
+            <br>
+            <ul>
+              <li>Variables</li>
+              <li>Resource level versioning</li>
+            </ul>
+          </p>
+          <p>
+            <div class='red'>Cons:</div>
+            <br>
+            <ul>
+              <li>Intrinsic functions are strings</li>
+              <li>Resources an Array</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>SparkleFormation in ARM</h2>
+        </hgroup>
+        <article>
+          <p>Template</p>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example, :provider => :azure) do&#x000A;  resources.my_resource do&#x000A;    type 'Custom/resourceTypes'&#x000A;  end&#x000A;end</pre>
+          <div style='float: right; width: 48%; font-size: 80%'>
+            <p>Final JSON</p>
+            <pre class='prettyprint' data-lang='json' style='padding: 0; font-size: smaller;'>{&#x000A;  "resources": [&#x000A;    {&#x000A;      "type": "Custom/resourceTypes",&#x000A;      "name": "myResource"&#x000A;    }&#x000A;  ]&#x000A;}</pre>
+          </div>
+          <div style='float: left; width: 48%; font-size: 80%'>
+            <p>Internal data structure</p>
+            <pre class='prettyprint' data-lang='ruby' style='padding: 0; font-size: smaller;'>{&#x000A;  "resources" => {&#x000A;    "myResource" => {&#x000A;      "type" => "Custom/resourceTypes"&#x000A;    }&#x000A;  }&#x000A;}</pre>
+          </div>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Google Cloud Deployment Manager</h2>
+        </hgroup>
+        <article style='float:right; width: 45%'>
+          <pre class='prettyprint' data-lang='json' style='height: 70%; padding-left: 5px; font-size: 60%'>{&#x000A;  "imports": [&#x000A;    {&#x000A;      "name": "google.jinja",&#x000A;      "content": {&#x000A;        "resources": [&#x000A;          {&#x000A;            "type": "storage.v1.bucket",&#x000A;            "name": "my-bucket-kjkmaatdcn"&#x000A;          }&#x000A;        ],&#x000A;        "outputs": [&#x000A;          {&#x000A;            "value": "{{ properties[\"creator\"] }}",&#x000A;            "name": "owner"&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    {&#x000A;      "name": "google.jinja.schema",&#x000A;      "content": {&#x000A;        "info": {&#x000A;          "title": "google.jinja template",&#x000A;          "description": "google.jinja template schema"&#x000A;        },&#x000A;        "properties": {&#x000A;          "creator": {&#x000A;            "type": "string"&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;  ],&#x000A;  "config": {&#x000A;    "content": {&#x000A;      "resources": [&#x000A;        {&#x000A;          "name": "google",&#x000A;          "type": "google.jinja"&#x000A;        }&#x000A;      ],&#x000A;      "imports": [&#x000A;        "google.jinja",&#x000A;        "google.jinja.schema"&#x000A;      ]&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</pre>
+        </article>
+        <article style='width: 45%; font-size: 80%'>
+          <br>
+          <br>
+          <br>
+          <p>Orchestration API in Google cloud</p>
+          <br>
+          <p>
+            <div class='green'>Pros:</div>
+            <br>
+            <ul>
+              <li>Supports templates</li>
+            </ul>
+          </p>
+          <p>
+            <div class='red'>Cons:</div>
+            <br>
+            <ul>
+              <li>Intrinsic functions are strings (Jinja)</li>
+              <li>Resources an Array</li>
+              <li>Outputs an Array</li>
+              <li>Jinja support only within subfiles</li>
+              <li>Parameters defined within subfiles</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>GCDM SparkleFormation Template</h2>
+        </hgroup>
+        <article>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:example, :provider => :google) do&#x000A;  parameters.creator.type 'string'&#x000A;  dynamic!(:v1_bucket, :my_bucket, :sparkle_unique)&#x000A;  outputs.owner.value property!(:creator)&#x000A;end</pre>
+          <pre class='prettyprint auto-scroll' data-lang='json' style='height: 50%; font-size: 60%'>{&#x000A;  "imports": [&#x000A;    {&#x000A;      "name": "google.jinja",&#x000A;      "content": {&#x000A;        "resources": [&#x000A;          {&#x000A;            "type": "storage.v1.bucket",&#x000A;            "name": "my-bucket-kjkmaatdcn"&#x000A;          }&#x000A;        ],&#x000A;        "outputs": [&#x000A;          {&#x000A;            "value": "{{ properties[\"creator\"] }}",&#x000A;            "name": "owner"&#x000A;          }&#x000A;        ]&#x000A;      }&#x000A;    },&#x000A;    {&#x000A;      "name": "google.jinja.schema",&#x000A;      "content": {&#x000A;        "info": {&#x000A;          "title": "google.jinja template",&#x000A;          "description": "google.jinja template schema"&#x000A;        },&#x000A;        "properties": {&#x000A;          "creator": {&#x000A;            "type": "string"&#x000A;          }&#x000A;        }&#x000A;      }&#x000A;    }&#x000A;  ],&#x000A;  "config": {&#x000A;    "content": {&#x000A;      "resources": [&#x000A;        {&#x000A;          "name": "google",&#x000A;          "type": "google.jinja"&#x000A;        }&#x000A;      ],&#x000A;      "imports": [&#x000A;        "google.jinja",&#x000A;        "google.jinja.schema"&#x000A;      ]&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>
+            String evaluation -
+            <span style='font-size: 80%; color: 888888'>because it's "easier"</span>
+          </h2>
+        </hgroup>
+        <article>
+          <b>Example usage</b>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='ruby'>SparkleFormation.new(:test, :provider => :azure) do&#x000A;  test concat!('fubar', add!(1, 2))&#x000A;end</pre>
+          <br>
+          <br>
+          <b>Example output</b>
+          <br>
+          <br>
+          <pre class='prettyprint' data-lang='json'>{&#x000A;  "test": "[concat('fubar', add(1, 2))]"&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide class='segue dark quote nobackground'>
+        <aside class='gdbar bottom right'>
+          <img src='images/share.jpg'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <q>Sharing is caring</q>
+          <p>SparklePacks and distribution</p>
+        </article>
+      </slide>
+      
+      <slide>
+        <aside class='gdbar bottom right'>
+          <img src='images/present.png'>
+        </aside>
+        <hgroup>
+          <h2>SparkleFormation SparklePacks</h2>
+        </hgroup>
+        <article>
+          <p>
+            <b>Means to distribute SparkleFormation code</b>
+            <ul>
+              <li>Access to building blocks</li>
+              <li>Access to templates</li>
+              <li>Multiple enabled at once</li>
+              <li>Layering</li>
+            </ul>
+          </p>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Pack Layering Example</h2>
+        </hgroup>
+        <article>
+          <p>Root pack node dynamic</p>
+          <pre class='prettyprint' data-lang='ruby' style='font-size: 60%'>SparkleFormation.dynamic(:node) do |name|&#x000A;  resources.set!("#{name}_instance").type 'AWS::EC2::Instance'&#x000A;end</pre>
+          <p>Security pack node dynamic</p>
+          <pre class='prettyprint' data-lang='ruby' style='font-size: 60%'>SparkleFormation.dynamic(:node, :layering => :merge) do |name|&#x000A;  resources.set!("#{name}_security").type 'AWS::EC2::SecurityGroup'&#x000A;end</pre>
+          <p>Template usage</p>
+          <pre class='prettyprint' data-lang='ruby' style='font-size: 60%'>SparkleFormation.new(:example) do&#x000A;  dynamic!(:node, :test)&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Pack Layering Result</h2>
+        </hgroup>
+        <article>
+          <p>Template generated JSON</p>
+          <pre class='prettyprint' data-lang='json'>{&#x000A;  "Resources": {&#x000A;    "TestInstance": {&#x000A;      "Type": "AWS::EC2::Instance"&#x000A;    },&#x000A;    "TestSecurity": {&#x000A;      "Type": "AWS::EC2::SecurityGroup"&#x000A;    }&#x000A;  }&#x000A;}</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Callbacks</h2>
+        </hgroup>
+        <article>
+          <p>Add custom functionality</p>
+          <ul>
+            <li>Stack policy generation</li>
+            <li>AWS MFA token generation</li>
+            <li>Serverspec integration</li>
+          </ul>
+          <pre class='prettyprint' data-lang='ruby'>resources.my_ec2_instance do&#x000A;  type 'AWS::EC2::Instance'&#x000A;  proeprties do&#x000A;    ...&#x000A;  end&#x000A;  serverspec.spec_patterns [File.join(Dir.pwd, 'specs/compute/*_spec.rb')]&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Other Features</h2>
+        </hgroup>
+        <article>
+          <p>More things in the SparkleFormation wheelhouse</p>
+          <ul>
+            <li>Template Linting</li>
+            <li>Template Diffs</li>
+            <li>Stack planning (AWS only currently)</li>
+          </ul>
+          <p>AWS Related - jackal-cfn</p>
+          <ul>
+            <li>CloudFormation Custom Resources</li>
+            <li>AmiRegister - Create AMIs</li>
+            <li>OrchestrationUnit - Execute unit of code</li>
+            <li>JackalStacks - Build stacks</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
+          <h2>Resources</h2>
+        </hgroup>
+        <article>
+          <p>Where to find SparkleFormation info:</p>
+          <ul>
+            <li>GitHub: https://github.com/sparkleformation</li>
+            <li>IRC: Freenode @ #sparkleformation</li>
+          </ul>
+        </article>
+      </slide>
+      
+      <slide class='fill nobackground' style='background-image: url(images/plans1.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color: #000'></slide>
+      <slide class='fill nobackground' style='background-image: url(images/plans2.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color: #000'></slide>
+      <slide class='fill nobackground' style='background-image: url(images/plans3.png); background-repeat: norepeat; background-position: center; background-size: contain; background-color: #000'></slide>
+      <slide class='thank-you-slide segue nobackground'>
+        <aside class='gdbar right'>
+          <img src='images/fry.png'>
+        </aside>
+        <article class='flexbox vleft auto-fadein'>
+          <h2>Thank you!</h2>
+        </article>
+        <p class='auto-fadein' data-config-contact></p>
+      </slide>
+      <slide class='logoslide nobackground'>
+        <article class='flexbox vcenter'>
+          <span>
+            <img src='images/initial.gif'>
+          </span>
+        </article>
+      </slide>
+      <slide class='backdrop'></slide>
+    </slides>
+  </body>
+  <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</html>
