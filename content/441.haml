@@ -1,0 +1,26 @@
+%slide
+  %hgroup
+    %h2 Linting
+  %article
+    %p Template linting
+    %ul
+      %li JMESPath query language
+      %li Build complex rules
+      %li Validate template based on search results
+
+    %pre.prettyprint{'data-lang' => 'ruby'}
+      :preserve
+        RuleSet.build(:aws_rules) do
+          rule :aws_resources_only do
+            definition 'Resources.[*][0][*].Type' do |search, template|
+              unless(search.nil?)
+                result = search.find_all{|i| !i.start_with?('AWS')}
+                result.empty? ? true : result
+              else
+                true
+              end
+            end
+
+            fail_message 'All types must be within AWS root namespace'
+          end
+        end
