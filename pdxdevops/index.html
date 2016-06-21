@@ -837,6 +837,21 @@
       
       <slide>
         <hgroup>
+          <h2>Linting</h2>
+        </hgroup>
+        <article>
+          <p>Template linting</p>
+          <ul>
+            <li>JMESPath query language</li>
+            <li>Build complex rules</li>
+            <li>Validate template based on search results</li>
+          </ul>
+          <pre class='prettyprint' data-lang='ruby'>RuleSet.build(:aws_rules) do&#x000A;  rule :aws_resources_only do&#x000A;    definition 'Resources.[*][0][*].Type' do |search, template|&#x000A;      unless(search.nil?)&#x000A;        result = search.find_all{|i| !i.start_with?('AWS')}&#x000A;        result.empty? ? true : result&#x000A;      else&#x000A;        true&#x000A;      end&#x000A;    end&#x000A;&#x000A;    fail_message 'All types must be within AWS root namespace'&#x000A;  end&#x000A;end</pre>
+        </article>
+      </slide>
+      
+      <slide>
+        <hgroup>
           <h2>Other Features</h2>
         </hgroup>
         <article>
